@@ -55,6 +55,7 @@ try {
             {
                 $hikesController = new HikesController();
                 $hikesController->create();
+
             }
             if ($method == 'POST'){
                 $hikesController = new HikesController();
@@ -80,16 +81,18 @@ try {
             break;
         case "hikes/dashboard/update":
             $authController = new authController();
-            if($authController->verification($_GET['id']) == true || $_SESSION['user']["admin"]==1)
+            if($authController->verification($_GET['id'])
+                ||$authController->verification($_POST['hikeID'])
+                ||$_SESSION['user']['admin']=1)
             {
 
                 if ($method == "GET")
                 {
-
                     $hikesController = new HikesController();
                     $hikesController->update();
+
                 }
-                if ($method == 'POST'){
+               if ($method == 'POST'){
 
                     $hikesController = new HikesController();
                     $hikesController->store();

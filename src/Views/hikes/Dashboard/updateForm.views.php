@@ -3,7 +3,7 @@
 $controller = new \Controllers\TagsController();
 $datas =$controller->select();
 ?>
-<form method="POST" action="/hikes/dashboard/update">
+<form method="post" action="/hikes/dashboard/update">
     <label for="name" > votre nom</label>
     <input type="text" name="name" value="<?=$hike->name?>" id="name">
     <label for="distance">  distance</label>

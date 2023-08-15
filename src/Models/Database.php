@@ -29,6 +29,7 @@ class Database
 
         $stmt->execute($params);
 
+
         return $stmt;
     }
 

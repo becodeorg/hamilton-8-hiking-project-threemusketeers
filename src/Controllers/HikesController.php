@@ -32,7 +32,9 @@ class HikesController
              }
 
             $model = new Hike();
+
             $model->store($name,$distance,$duration,$gain,$description,$tag_id,$hikeID);
+
             header('Location:http://localhost:3000/hikes/dashboard/index');
 
     }

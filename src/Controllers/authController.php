@@ -56,7 +56,6 @@ class authController
             'id'=>$user->id,
             'firstName' => $user->firstName,
             'lastName' => $user->lastName,
-            'nickName' => $user->nickName,
             'email' => $user->email,
             'admin'=>$user->admin
         ];
@@ -66,6 +65,7 @@ class authController
 
     public function verification($id)
     {
+
         $auth = new Auth();
         $hikes_has_user = $auth->verification($id);
         if ($hikes_has_user->user == $_SESSION['user']['id'])

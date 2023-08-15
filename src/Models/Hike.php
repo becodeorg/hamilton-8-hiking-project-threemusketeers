@@ -12,21 +12,32 @@ class Hike extends Database
 
             if (is_null($hikeID))
             {
-                $stmt = $this->query("INSERT INTO Hikes
-    (name,distance,duration,elevation_gain,description,tag_id,created_at,updated_at) VALUES (?, ?, ?, ?,?,?,?,?)",
+
+                $sql ="INSERT INTO Hikes
+            (name,distance,duration,elevation_gain,description,tag_id,created_at,updated_at) VALUES (?, ?, ?, ?,? ,? ,? ,?);";
+
+                $stmt = $this->query($sql,
                     [$name,$distance,$duration,$gain,$description,$tag,$date,$date]);
+
+                $sql ="INSERT INTO Hikes_has_users
+                 (hike,user) VALUES (?, ?);";
+                $userID = $_SESSION['user']['id'];
+
+                $stmt = $this->query($sql,
+                    [$this->lastInsertId(),$userID]);
 
             }else{
 
                 $sql ="UPDATE Hikes
-SET name=?, distance= ?, duration= ?,elevation_gain = ?,description = ?,tag_id = ?,created_at=?,updated_at=?
+SET name=?, distance= ?, duration= ?,elevation_gain = ?,description = ?,tag_id = ?
 WHERE id=".(int)$hikeID;
 
-                $stmt = $this->query($sql,
-                [$name,$distance,$duration,$gain,$description,$tag,$date,$date]);
 
+                $stmt = $this->query($sql,
+                [$name,$distance,$duration,$gain,$description,$tag]);
 
             }
+
     }
 
 
