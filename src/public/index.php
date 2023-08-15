@@ -1,13 +1,44 @@
 <?php
 declare(strict_types=1);
+session_start();
 require_once 'vendor/autoload.php';
 use Controllers\HikesController;
 use Controllers\TagsController;
+use Controllers\authController;
 try {
     $url_path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), "/");
     $method = $_SERVER['REQUEST_METHOD']; // GET -- POST
     switch ($url_path) {
+            case "register":
 
+                if ($method == "GET") {
+                    $authController = new authController();
+                    $authController->register();
+                }
+                if ($method == 'POST'){
+                    $authController = new authController();
+                    $authController->store();
+                }
+
+               break;
+        case "login":
+
+            if ($method == "GET") {
+                $authController = new authController();
+                $authController->loginForm();
+            }
+            if ($method == 'POST'){
+                $authController = new authController();
+                $authController->login();
+
+            }
+
+            break;
+
+        case 'logout':
+            $authController=  new  authController();
+            $authController->logout();
+            break;
             case "tags/dashboard/create":
                 if ($method == "GET") {
                     $tagsConroller = new TagsController();
@@ -48,15 +79,23 @@ try {
             $hikesController->delete();
             break;
         case "hikes/dashboard/update":
-            if ($method == "GET")
+            $authController = new authController();
+            if($authController->verification($_GET['id']) == true || $_SESSION['user']["admin"]==1)
             {
-                $hikesController = new HikesController();
-                $hikesController->update();
+
+                if ($method == "GET")
+                {
+
+                    $hikesController = new HikesController();
+                    $hikesController->update();
+                }
+                if ($method == 'POST'){
+
+                    $hikesController = new HikesController();
+                    $hikesController->store();
+                }
             }
-            if ($method == 'POST'){
-                $hikesController = new HikesController();
-                $hikesController->store();
-            }
+
             break;
     }
 } catch (Exception $e) {

@@ -39,8 +39,25 @@ WHERE id=".(int)$hikeID;
 
     public function findAll()
     {
-        $stmt = $this->query("SELECT *,Hikes.id as hikeID,Hikes.name as hikeName, Tags.name as tagName FROM Hikes INNER JOIN Tags ON Tags.id = Hikes.tag_id");
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
+        if ($_SESSION['user']['admin'] == 0)
+        {
+            $sql ="SELECT *,Hikes.id as hikeID,Hikes.name as hikeName, Tags.name as tagName 
+FROM Hikes 
+    INNER JOIN Tags ON Tags.id = Hikes.tag_id INNER JOIN Hikes_has_users ON Hikes.id = Hikes_has_users.hike 
+    INNER JOIN Users on Hikes_has_users.user = Users.id 
+WHERE Users.id =".$_SESSION['user']['id'];
+        }else{
+            $sql ="SELECT *,Hikes.id as hikeID,Hikes.name as hikeName, Tags.name as tagName 
+FROM Hikes 
+    INNER JOIN Tags ON Tags.id = Hikes.tag_id INNER JOIN Hikes_has_users ON Hikes.id = Hikes_has_users.hike 
+    INNER JOIN Users on Hikes_has_users.user = Users.id ";
+        }
+
+        $stmt = $this->query($sql);
+
+
+        $datas =$stmt->fetchAll(PDO::FETCH_OBJ);
+        return $datas;
     }
 
     public function delete($id)

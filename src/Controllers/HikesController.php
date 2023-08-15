@@ -72,11 +72,13 @@ public function delete()
 
 public function update()
 {
+
     $model = new Hike();
     $hike = $model->getByID($_GET['id']);
 
     include 'Views/layout/header.views.php';
     include 'Views/hikes/Dashboard/updateForm.views.php';
 }
+
 
 }
