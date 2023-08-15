@@ -16,4 +16,14 @@ class Tag extends Database
         $data = $stmt->fetch(\PDO::FETCH_OBJ);
         return $data;
     }
+
+    public function store($name)
+    {
+
+        $stmt = $this->query("INSERT INTO Tags
+    (name) VALUES (?)",
+            [$name]);
+
+
+    }
 }

@@ -2,11 +2,23 @@
 declare(strict_types=1);
 require_once 'vendor/autoload.php';
 use Controllers\HikesController;
+use Controllers\TagsController;
 try {
     $url_path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), "/");
     $method = $_SERVER['REQUEST_METHOD']; // GET -- POST
     switch ($url_path) {
 
+            case "tags/dashboard/create":
+                if ($method == "GET") {
+                    $tagsConroller = new TagsController();
+                    $tagsConroller->create();
+                }
+                if ($method == 'POST'){
+                    $tagsController = new TagsController();
+                    $tagsController->store();
+                }
+
+                break;
         case "hikes/dashboard/create":
             if ($method == "GET")
             {

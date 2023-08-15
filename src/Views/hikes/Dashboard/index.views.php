@@ -1,4 +1,5 @@
 <a href="/hikes/dashboard/create">Creer</a>
+<a href="/tags/dashboard/create">Creer un nouveau tag</a>
 <table>
     <thead>
     <tr>
