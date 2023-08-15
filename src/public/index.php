@@ -83,7 +83,7 @@ try {
             $authController = new authController();
             if($authController->verification($_GET['id'])
                 ||$authController->verification($_POST['hikeID'])
-                ||$_SESSION['user']['admin']=1)
+                || ($_SESSION['user']['admin'] == 1))
             {
 
                 if ($method == "GET")
