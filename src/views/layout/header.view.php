@@ -16,6 +16,16 @@
   i {
     padding : 5px;
   }
+  .tag{
+    background-color : #edf0f3; 
+    border-radius : 10px; 
+    padding: 5px;
+    text-align: center;
+    border : 1px solid #d9dadb;
+  }
+  .grid-solopage{
+    margin-bottom: 25px;
+  }
 </style>
 
 <nav>
