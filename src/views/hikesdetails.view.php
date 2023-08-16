@@ -1,14 +1,14 @@
     <h2><?= $hike['name'] ?></h2>
 
     <!--TAG TO MODIFY ? -->
-    <div class="grid">
+    <div class="grid" id="grid-solopage">
                 <div class="tag">tag 1</div>
                 <div class="tag">tag 2</div>
                 <div class="tag">tag 3</div>
                 <div class="tag">tag 4</div>
                 <div class="tag">tag 5</div>
                 <div class="tag">tag 6</div>
-            </div>
+    </div>
 
     <ul>
         <li> <i class="fa-solid fa-person-hiking"></i>Distance: <?= $hike['distance'] ?> m</li>
