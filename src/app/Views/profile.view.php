@@ -3,12 +3,12 @@
 $userInfoArray = [];
 
 foreach($displayCurrentUserProfile as $key=>$value){
-    // Can the user change nickname ?
+
     switch($key){
         case "firstName":
             $keyNewValue = "First name";
             $userInfoArray[$keyNewValue] = $value;
-        break;
+            break;
         case "lastName":
             $keyNewValue = "Last name";
             $userInfoArray[$keyNewValue] = $value;
@@ -16,7 +16,7 @@ foreach($displayCurrentUserProfile as $key=>$value){
         case "nickname":
             $keyNewValue = "Nickname";
             $userInfoArray[$keyNewValue] = $value;
-        break;
+            break;
         case "email":
             $keyNewValue = "Email";
             $userInfoArray[$keyNewValue] = $value;
@@ -24,20 +24,24 @@ foreach($displayCurrentUserProfile as $key=>$value){
         case "Password":
             $keyNewValue = "Password";
             $userInfoArray[$keyNewValue] = $value;
-        break;
+            break;
 
     }
 }
 
 ?>
 
-<section>
-    <?php foreach($userInfoArray as $key=>$value): ?>
 
-        <p><?= $key . " " . $value ?></p>
+ <?php foreach($userInfoArray as $key=>$value): ?>
 
-    <?php endforeach; ?>
+     <p><?= $key . ": " . $value ?></p>
+       
+ <?php endforeach; ?>
 
-   
-</section>
+
+<a href="/modify">Modify</a>
+<!-- <button role="link" href="/">Modify</button> -->
+    
+
+
 

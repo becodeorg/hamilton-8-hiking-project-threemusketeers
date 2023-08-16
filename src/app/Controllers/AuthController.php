@@ -67,9 +67,7 @@ class AuthController
             throw new Exception('Wrong password.');
         }
 
-
-        // First I need to get the user as an array with all the info inside
-
+        
         $_SESSION['user'] = [
             'id' => $user['id'],
             'firstName' => $user['firstName'],
@@ -84,11 +82,46 @@ class AuthController
     }
 
 
-
     public function showLoginForm()
     {
         include 'app/Views/layout/header.view.php';
         include 'app/Views/login.view.php';
+        include 'app/Views/layout/footer.view.php';
+    }
+
+    public function modifyUser(string $firstNameInput, string $lastNameInput, string $nicknameInput, string $emailInput, string $passwordInput){
+
+        if (empty($firstNameInput) || empty($lastNameInput) || empty($nicknameInput) || empty($emailInput) || empty($passwordInput)) {
+            throw new Exception('Form not completed.');
+        }
+
+        $firstName = htmlspecialchars($firstNameInput);
+        $lastName = htmlspecialchars($lastNameInput);
+        $nickname = htmlspecialchars($nicknameInput);
+        $email = filter_var($emailInput, FILTER_SANITIZE_EMAIL);
+        $passwordHash = password_hash($passwordInput, PASSWORD_DEFAULT);
+
+        
+        $modUser = (new User())->changeUserInfo($_SESSION["user"]["nickname"], $firstName, $lastName, $nickname, $email, $passwordHash);
+        $user = (new User())->find_user($_SESSION["user"]["nickname"]);
+
+        $_SESSION['user'] = [
+            'id' => $user['id'],
+            'firstName' => $user['firstName'],
+            'lastName' => $user['lastName'],
+            'nickname' => $user['nickname'],
+            'email' => $user['email'],
+        ];
+        
+
+        http_response_code(302);
+        header('location: /profile');
+    }
+
+    public function showModifyForm(){
+
+        include 'app/Views/layout/header.view.php';
+        include "app/Views/modifyInfoUser.view.php";
         include 'app/Views/layout/footer.view.php';
     }
 

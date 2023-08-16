@@ -36,9 +36,15 @@ try {
             $authController = new AuthController();
             $authController->logout();
             break;
+        case "modify":
+            $modifyUserInfo = new AuthController();
+            if($method === "GET") $modifyUserInfo->showModifyForm();
+            if($method === "POST") $modifyUserInfo->modifyUser($_POST['firstName'],$_POST['lastName'], $_POST['nickname'],$_POST['email'], $_POST['password']);
+            break;
         default:
             $pageController = new PageController();
             $pageController->page_404();
+            break;
     }
 } catch (Exception $e) {
     $pageController = new PageController();

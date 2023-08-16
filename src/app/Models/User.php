@@ -32,6 +32,13 @@ class User extends Database
         'email' => $email,
     ];
    }
+
+   public function changeUserInfo(string $user, string $firstName, string $lastName, string $nickname, string $email, string $password){
+        $sql = "UPDATE Users SET firstName = ?, lastName = ?, nickname = ?, email = ?, password = ? WHERE nickname = ?";
+        $stmt = $this->query($sql, [$firstName, $lastName, $nickname, $email, $password, $user]);
+        
+   }
+
 }
 
 ?>
