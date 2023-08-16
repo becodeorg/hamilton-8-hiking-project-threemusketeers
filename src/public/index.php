@@ -18,16 +18,14 @@ try {
             $displayIndex = new PageController();
             $displayIndex->index();
             break;
-        // case "product":
-        //     if (empty($_GET['productCode'])) throw new Exception("Please provide a product code");
-        //     $productController = new ProductController();
-        //     $productController->show($_GET['productCode']);
-        //     break;
-        // case "login":
-        //     $authController = new AuthController();
-        //     if ($method === "GET") $authController->showLoginForm();
-        //     if ($method === "POST") $authController->login($_POST['username'], $_POST['password']);
-        //     break;
+        case "showUser":
+            include 'app/Views/showUser.view.php';
+            break;
+        case "login":
+            $authController = new AuthController();
+            if ($method === "GET") $authController->showLoginForm();
+            if ($method === "POST") $authController->login($_POST['nickname'], $_POST['password']);
+            break;
         case "logout":
             $authController = new AuthController();
             $authController->logout();

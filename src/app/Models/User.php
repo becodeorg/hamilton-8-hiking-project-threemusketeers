@@ -17,11 +17,11 @@ class User extends Database
 
     }
 
-    // public function login_user(string $username){
-    //     $sql = "SELECT * FROM users WHERE username = ?";
-    //     $stmt = $this->query($sql, [$username]);
-    //     return $stmt->fetch();
-    // }
+    public function login_find_user(string $nicknameInput){
+        $sql = "SELECT * FROM Users WHERE nickname = ?";
+        $stmt = $this->query($sql, [$nicknameInput]);
+        return $stmt->fetch();
+    }
     
    public function store_session(string $firstName, string $lastName, string $nickname, $email){
     $_SESSION['user'] = [

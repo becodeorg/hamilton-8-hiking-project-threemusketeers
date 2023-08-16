@@ -45,37 +45,52 @@ class AuthController
         include 'app/Views/layout/footer.view.php';
     }
 
-    // public function login(string $usernameInput, string $passwordInput)
-    // {
-    //     if (empty($usernameInput) || empty($passwordInput)) {
-    //         throw new Exception('Formulaire non complet');
-    //     }
+    public function login(string $nicknameInput, string $passwordInput){
+        if (empty($nicknameInput) || empty($passwordInput)) {
+            throw new Exception('Form not completed.');
+        }
 
-    //     $username = htmlspecialchars($usernameInput);
+        $username = htmlspecialchars($nicknameInput);
 
-    //     $user = (new User())->login_user($usernameInput);
+        $user = (new User())->login_find_user($nicknameInput);
 
-    //     if (empty($user)) {
-    //         throw new Exception('Mauvais nom d\'utilisateur');
-    //     }
+        // var_dump($user);
+        // die();
+      
 
-    //     if (password_verify($passwordInput, $user['password']) === false) {
-    //         throw new Exception('Mauvais mot de passe');
-    //     }
+        // I need to find a better way to check/verify the user input 
+        if (empty($user)) {
+            throw new Exception('There\'s no user in our DataBase with that nickname.');
+        }
 
-    //     $session = (new User())->store_session($username, $user['email']);
+        if (password_verify($passwordInput, $user['password']) === false) {
+            throw new Exception('Wrong password.');
+        }
 
-    //     // Redirect to home page
-    //     http_response_code(302);
-    //     header('location: /');
-    // }
 
-    // public function showLoginForm()
-    // {
-    //     include 'views/layout/header.view.php';
-    //     include 'views/login.view.php';
-    //     include 'views/layout/footer.view.php';
-    // }
+        // First I need to get the user as an array with all the info inside
+
+        $_SESSION['user'] = [
+            'id' => $user['id'],
+            'firstName' => $user['firstName'],
+            'lastName' => $user['lastName'],
+            'nickname' => $user['nickname'],
+            'email' => $user['email'],
+        ];
+        
+        // Redirect to home page
+        http_response_code(302);
+        header('location: /');
+    }
+
+
+
+    public function showLoginForm()
+    {
+        include 'app/Views/layout/header.view.php';
+        include 'app/Views/login.view.php';
+        include 'app/Views/layout/footer.view.php';
+    }
 
     public function logout()
     {
@@ -84,3 +99,17 @@ class AuthController
         header('location: /');
     }
 }
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////
