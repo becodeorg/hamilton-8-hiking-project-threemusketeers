@@ -1,17 +1,23 @@
 <?php
-
 declare(strict_types=1);
-
-namespace Models;
-
+namespace Controllers;
 use PDO;
-
 require_once __DIR__ . '/../src/Models/Database.php';
 
-use Models\Database;
 
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
+class HikesDetailsController
+{
+    public function index()
+    {
+        try {
+            include '../views/layout/header.view.php';
+            include '../views/hikes.view.php';
+            include '../views/layout/footer.view.php';
+        } catch (Exception $e) {
+            print_r($e->getMessage());
+        }
+    }
+}
 
 try {
     $db = new Database();

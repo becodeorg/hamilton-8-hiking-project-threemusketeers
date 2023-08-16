@@ -7,6 +7,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
 </head>
 <body>
+
+<style>
+  body{
+    padding : 50px;
+  }
+</style>
+
 <nav>
   <ul>
     <li><strong>YourHikes.com</strong></li>

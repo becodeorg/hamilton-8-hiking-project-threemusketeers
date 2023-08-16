@@ -3,8 +3,6 @@
     background-color: #1095c1;
     color: white;
     text-align: center;
-    padding: 10px 0;
-    position: absolute;
     bottom: 0;
     width: 100%;
   }

@@ -2,15 +2,31 @@
 declare(strict_types=1);
 session_start();
 require_once 'vendor/autoload.php';
+
 use Controllers\HikesController;
 use Controllers\TagsController;
-use Controllers\authController;
-use Controllers\usersController;
+use Controllers\AuthController;
+use Controllers\UsersController;
+use Controllers\HikesDetailsController;
+use Controllers\IndexController;
+
 try {
     $url_path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), "/");
     $method = $_SERVER['REQUEST_METHOD']; // GET -- POST
     switch ($url_path) {
-            case "register":
+        case "":
+        case "index.php":
+                $IndexController = new IndexController();
+                $IndexController->index();
+        break;
+        
+        case "hikesdetails":
+            if ($method == "GET") {
+                $HikesDetailsController = new HikesDetailsController();
+            }
+        break;
+            
+        case "register":
 
                 if ($method == "GET") {
                     $authController = new authController();
@@ -21,7 +37,7 @@ try {
                     $authController->store();
                 }
 
-               break;
+        break;
         case "login":
 
             if ($method == "GET") {
