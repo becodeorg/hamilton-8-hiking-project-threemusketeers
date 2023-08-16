@@ -1,17 +1,21 @@
+<!--For the details-->
 <?php
+
 declare(strict_types=1);
 
 namespace Models;
-
 use PDO;
 use PDOStatement;
 
 require_once __DIR__ . '/../src/Models/Database.php';
 
 use Models\Database;
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 
 try {
     $db = new Database();
+    var_dump($Hikes);
 
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
@@ -27,21 +31,3 @@ try {
     exit();
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hike Details</title>
-</head>
-<body>
-    <?php if (!empty($hike)): ?>
-        <h2><?= $hike['name'] ?></h2>
-        <p>Description: <?= $hike['description'] ?></p>
-        <p>Distance: <?= $hike['distance'] ?> m</p>
-    <?php else: ?>
-        <p>Sorry, no details available for this hike.</p>
-    <?php endif; ?>
-</body>
-</html>

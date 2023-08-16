@@ -1,3 +1,4 @@
+<!--For the INDEX-->
 <?php
 declare(strict_types=1);
 
@@ -6,9 +7,6 @@ namespace Models;
 use PDO;
 use PDOStatement;
 require_once 'vendor/autoload.php';
-
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
 
 use Models\Database;
 
@@ -23,3 +21,4 @@ try {
     exit();
 }
 ?>
+
