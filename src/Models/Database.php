@@ -13,7 +13,7 @@ class Database
     public function __construct()
     {
         $this->pdo = new PDO(
-            'mysql:host=' . getenv('DB_HOST') . ';dbname=' . getenv('PROD_DATABASE'),
+            'mysql:host=' . getenv('PROD_DB_HOST') . ';dbname=' . getenv('PROD_DATABASE'),
             getenv('PROD_USERNAME'),
             getenv('PROD_PASSWORD')
         );
