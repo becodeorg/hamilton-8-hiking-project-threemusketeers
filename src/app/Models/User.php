@@ -37,6 +37,7 @@ class User extends Database
         $sql = "UPDATE Users SET firstName = ?, lastName = ?, nickname = ?, email = ?, password = ? WHERE nickname = ?";
         $stmt = $this->query($sql, [$firstName, $lastName, $nickname, $email, $password, $user]);
         
+        
    }
 
 }

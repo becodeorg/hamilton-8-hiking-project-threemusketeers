@@ -54,11 +54,7 @@ class AuthController
 
         $user = (new User())->find_user($nicknameInput);
 
-        // var_dump($user);
-        // die();
-      
 
-        // I need to find a better way to check/verify the user input 
         if (empty($user)) {
             throw new Exception('There\'s no user in our DataBase with that nickname.');
         }
@@ -103,7 +99,7 @@ class AuthController
 
         
         $modUser = (new User())->changeUserInfo($_SESSION["user"]["nickname"], $firstName, $lastName, $nickname, $email, $passwordHash);
-        $user = (new User())->find_user($_SESSION["user"]["nickname"]);
+        $user = (new User())->find_user($nickname);
 
         $_SESSION['user'] = [
             'id' => $user['id'],
