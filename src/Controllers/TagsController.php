@@ -60,6 +60,7 @@ class TagsController
     {
         $tag = new Tag();
         $tag->delete($id);
+
         header('location:/tags/gestion');
     }
 }

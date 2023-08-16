@@ -6,6 +6,7 @@ use Controllers\HikesController;
 use Controllers\TagsController;
 use Controllers\authController;
 use Controllers\usersController;
+use Controllers\HikestagsController;
 try {
     $url_path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), "/");
     $method = $_SERVER['REQUEST_METHOD']; // GET -- POST
@@ -154,6 +155,9 @@ try {
         case "tags/delete":
             $tagsController = new  TagsController();
             $tagsController->delete($_GET['id']);
+            $hikeTagController = new HikestagsController();
+            $hikeTagController->delete($_GET["id"]);
+
             break;
     }
 } catch (Exception $e) {
