@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
+
 use Exception;
 use App\Models\User;
 use App\Models\Database;
@@ -15,6 +16,14 @@ class AuthController
     public function __construct()
     {
         $this->db = new Database();
+    }
+
+
+    public function showRegistrationForm()
+    {
+        include 'app/Views/layout/header.view.php';
+        include 'app/Views/register.view.php';
+        include 'app/Views/layout/footer.view.php';
     }
 
     public function register(string $firstNameInput, string $lastNameInput, string $nicknameInput, string $emailInput, string $passwordInput)
@@ -33,17 +42,10 @@ class AuthController
         
         $session = (new User())->store_session($firstName, $lastName, $nickname, $email);
         
-
         http_response_code(302);
-        header('location: /');
+        header('location: /hikesUser');
     }
 
-    public function showRegistrationForm()
-    {
-        include 'app/Views/layout/header.view.php';
-        include 'app/Views/register.view.php';
-        include 'app/Views/layout/footer.view.php';
-    }
 
     public function login(string $nicknameInput, string $passwordInput){
         if (empty($nicknameInput) || empty($passwordInput)) {
@@ -74,7 +76,7 @@ class AuthController
         
         // Redirect to home page
         http_response_code(302);
-        header('location: /');
+        header('location: /hikesUser');
     }
 
 
@@ -85,9 +87,9 @@ class AuthController
         include 'app/Views/layout/footer.view.php';
     }
 
-    public function modifyUser(string $firstNameInput, string $lastNameInput, string $nicknameInput, string $emailInput, string $passwordInput){
+    public function modifyUser(string $firstNameInput, string $lastNameInput, string $nicknameInput, string $emailInput){
 
-        if (empty($firstNameInput) || empty($lastNameInput) || empty($nicknameInput) || empty($emailInput) || empty($passwordInput)) {
+        if (empty($firstNameInput) || empty($lastNameInput) || empty($nicknameInput) || empty($emailInput)) {
             throw new Exception('Form not completed.');
         }
 
@@ -95,10 +97,8 @@ class AuthController
         $lastName = htmlspecialchars($lastNameInput);
         $nickname = htmlspecialchars($nicknameInput);
         $email = filter_var($emailInput, FILTER_SANITIZE_EMAIL);
-        $passwordHash = password_hash($passwordInput, PASSWORD_DEFAULT);
-
         
-        $modUser = (new User())->changeUserInfo($_SESSION["user"]["nickname"], $firstName, $lastName, $nickname, $email, $passwordHash);
+        $modUser = (new User())->change_user_info($_SESSION["user"]["nickname"], $firstName, $lastName, $nickname, $email);
         $user = (new User())->find_user($nickname);
 
         $_SESSION['user'] = [
@@ -108,8 +108,7 @@ class AuthController
             'nickname' => $user['nickname'],
             'email' => $user['email'],
         ];
-        
-
+    
         http_response_code(302);
         header('location: /profile');
     }
@@ -128,17 +127,3 @@ class AuthController
         header('location: /');
     }
 }
-
-
-
-
-
-
-
-
-
-////////////////////////////////////////////////////////////////////////
-
-////////////////////////////////////////////////////////////////////////
-
-////////////////////////////////////////////////////////////////////////

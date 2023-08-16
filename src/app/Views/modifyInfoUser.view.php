@@ -24,10 +24,11 @@ $userInfo = (new User())->find_user($_SESSION["user"]["nickname"]);
         <label for="email">Email</label>
         <input type="email" id="email" name="email" value=<?=$userInfo["email"]?>>
     </div>
-    <div>
+    
+    <!-- <div>
         <label for="password">Password</label>
         <input type="password" id="password" name="password">
-    </div>
+    </div> -->
    
     <button type="submit">Modify!</button>
 </form>

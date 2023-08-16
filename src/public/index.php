@@ -29,8 +29,7 @@ try {
             if ($method === "POST") $authController->login($_POST['nickname'], $_POST['password']);
             break;
         case "profile":
-            $displayProfile = new PageController();
-            $displayProfile->profile();
+            (new PageController())->profile();
             break;    
         case "logout":
             $authController = new AuthController();
@@ -40,6 +39,9 @@ try {
             $modifyUserInfo = new AuthController();
             if($method === "GET") $modifyUserInfo->showModifyForm();
             if($method === "POST") $modifyUserInfo->modifyUser($_POST['firstName'],$_POST['lastName'], $_POST['nickname'],$_POST['email'], $_POST['password']);
+            break;
+        case "hikesUser":
+            (new PageController())->display_user_hikes();
             break;
         default:
             $pageController = new PageController();

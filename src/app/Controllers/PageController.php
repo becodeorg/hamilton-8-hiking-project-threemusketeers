@@ -41,4 +41,14 @@ class PageController
         include 'app/Views/layout/footer.view.php';
     }
 
+    public function display_user_hikes(){
+
+        $displayUserHikes = (new User()) -> user_hikes($_SESSION["user"]["id"]);
+
+        include 'app/Views/layout/header.view.php';
+        include "app/Views/hikesUser.view.php";
+        include 'app/Views/layout/footer.view.php';
+        
+    }
+
 }

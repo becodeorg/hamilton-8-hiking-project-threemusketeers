@@ -33,11 +33,16 @@ class User extends Database
     ];
    }
 
-   public function changeUserInfo(string $user, string $firstName, string $lastName, string $nickname, string $email, string $password){
-        $sql = "UPDATE Users SET firstName = ?, lastName = ?, nickname = ?, email = ?, password = ? WHERE nickname = ?";
-        $stmt = $this->query($sql, [$firstName, $lastName, $nickname, $email, $password, $user]);
+   public function change_user_info(string $user, string $firstName, string $lastName, string $nickname, string $email){
+        $sql = "UPDATE Users SET firstName = ?, lastName = ?, nickname = ?, email = ? WHERE nickname = ?";
+        $stmt = $this->query($sql, [$firstName, $lastName, $nickname, $email, $user]);
         
-        
+   }
+
+   public function user_hikes($userId){
+        $sql = "SELECT * FROM Hikes WHERE user_id = ?";
+        $stmt = $this->query($sql, [$userId]);
+        return $stmt->fetchAll();
    }
 
 }
