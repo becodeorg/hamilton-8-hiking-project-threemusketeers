@@ -5,6 +5,7 @@ require_once 'vendor/autoload.php';
 use Controllers\HikesController;
 use Controllers\TagsController;
 use Controllers\authController;
+use Controllers\usersController;
 try {
     $url_path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), "/");
     $method = $_SERVER['REQUEST_METHOD']; // GET -- POST
@@ -99,6 +100,36 @@ try {
                 }
             }
 
+            break;
+        case "users/gestion":
+
+            if($_SESSION['user']['admin'] == 1){
+
+                $usersController = new usersController();
+                $usersController->index();
+
+                //$usersController->index();
+            }
+            break;
+        case "users/gestion/update":
+            if($_SESSION['user']['admin'] == 1){
+                if ($method == "GET")
+                {
+                    $usersController = new usersController();
+                    $usersController->updateForm();
+                }
+                if ($method == 'POST'){
+                    $usersController = new usersController();
+                    $usersController->store();
+                    header('location:http://localhost:3000/users/gestion');
+                }
+
+
+            }
+            break;
+        case "users/gestion/delete":
+            $usersController = new usersController();
+            $usersController->delete($_GET['id']);
             break;
     }
 } catch (Exception $e) {
