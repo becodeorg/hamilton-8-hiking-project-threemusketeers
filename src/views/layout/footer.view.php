@@ -1,10 +1,6 @@
 <style>
   footer {
-    background-color: #1095c1;
-    color: white;
     text-align: center;
-    bottom: 0;
-    width: 100%;
   }
 </style>
 <footer>
