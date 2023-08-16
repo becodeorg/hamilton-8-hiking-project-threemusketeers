@@ -27,9 +27,11 @@
                         <!--TAGS TO MODIFY-->
                         <td>
                             <?php // foreach ($tags as $tag): ?>
-                                <td>Tag 1 ++</td>
-                                <td>Tag 1 ++</td>
-                                <td>Tag 1 ++</td>
+                            <ul>
+                                <li>Tag 1 ++</li>
+                                <li>Tag 1 ++</li>
+                                <li>Tag 1 ++</li>
+                            </ul>
                         </td>
                     </tr>
                 

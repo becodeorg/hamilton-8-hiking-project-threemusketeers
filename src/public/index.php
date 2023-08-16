@@ -15,7 +15,7 @@ try {
     $method = $_SERVER['REQUEST_METHOD']; // GET -- POST
     switch ($url_path) {
         case "":
-        case "index.php":
+        case "index":
                 $IndexController = new IndexController();
                 $IndexController->index();
         break;

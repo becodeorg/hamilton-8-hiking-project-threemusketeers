@@ -20,11 +20,12 @@
 
 <nav>
   <ul>
+    <li><a href="index"><i class="fa-solid fa-house"></i></a></li>
     <li><strong>The Hiking Project.com</strong></li>
   </ul>
   <ul>
     <li><a href="#">Log-in</a></li>
-    <li><a href="#">Log-out</a></li>
+    <li><a href="#"><i class="fa-solid fa-right-from-bracket"></i></a></li>
     <li><a href="#" role="button"> <i class="fa-solid fa-user"></i>   My profile</a></li> 
   </ul>
 </nav>
