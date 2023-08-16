@@ -131,6 +131,25 @@ try {
             $usersController = new usersController();
             $usersController->delete($_GET['id']);
             break;
+
+        case "tags/gestion":
+            $tagsController = new TagsController();
+            $tagsController->find();
+            break;
+        case "tags/update":
+            if ($method == "GET")
+            {
+                $tagsController = new TagsController();
+                $tagsController->updateForm($_GET['id']);
+            }
+            if ($method == "POST")
+            {
+                ;
+                $tagsController = new TagsController();
+                $tagsController->update();
+            }
+
+            break;
     }
 } catch (Exception $e) {
 

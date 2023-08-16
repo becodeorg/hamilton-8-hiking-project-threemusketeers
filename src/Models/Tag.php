@@ -12,10 +12,12 @@ class Tag extends Database
     }
     public function findOneByID($id)
     {
-        $stmt =$this->query("DELETE FROM Tags WHERE id = ?",[$id]);
+
+        $stmt =$this->query("SELECT *FROM Tags WHERE id = ?",[$id]);
         $data = $stmt->fetch(\PDO::FETCH_OBJ);
         return $data;
     }
+
 
     public function store($name)
     {
@@ -24,6 +26,14 @@ class Tag extends Database
     (name) VALUES (?)",
             [$name]);
 
+    }
+    public function update($name,$tagID)
+    {
+        $sql ="UPDATE Tags
+        SET name=?
+        WHERE id=".(int)$tagID;
+
+       $this->query($sql,[$name]);
 
     }
 }

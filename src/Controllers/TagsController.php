@@ -25,5 +25,34 @@ class TagsController
         header('Location:http://localhost:3000/hikes/dashboard/index');
     }
 
+    public function find()
+    {
+        $data = new Tag();
+        $tags = $data->findAll();
+        include 'Views/layout/header.views.php';
+        include 'Views/tags/Dashboard/index.views.php';
+    }
 
+    public function updateForm($id)
+    {
+
+        $data = new Tag();
+        $tag =$data->findOneByID($id);
+
+        include 'Views/layout/header.views.php';
+        include 'Views/tags/Dashboard/update.views.php';
+
+    }
+
+    public  function update()
+    {
+        $name = htmlspecialchars($_POST['name']);
+        $tagID = $_POST['tagID'];
+
+        $tag = new Tag();
+        $tag->update($name,$tagID);
+
+        header('location:/tags/gestion');
+
+    }
 }
