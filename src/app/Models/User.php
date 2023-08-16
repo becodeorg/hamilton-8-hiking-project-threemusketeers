@@ -17,9 +17,9 @@ class User extends Database
 
     }
 
-    public function login_find_user(string $nicknameInput){
+    public function find_user(string $nickname){
         $sql = "SELECT * FROM Users WHERE nickname = ?";
-        $stmt = $this->query($sql, [$nicknameInput]);
+        $stmt = $this->query($sql, [$nickname]);
         return $stmt->fetch();
     }
     

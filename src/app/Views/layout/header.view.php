@@ -16,7 +16,7 @@
             </ul>
             <ul>
                 <?php if (!empty($_SESSION['user'])): ?>
-                    Hello <?= $_SESSION['user']['firstName'] . " " . $_SESSION['user']['lastName']?>
+                    <li><a href="/profile"><?= $_SESSION["user"]["nickname"] . " profile" ?></a></li>
                     <li><a href="/logout">Logout</a></li>
                 <?php else: ?>
                     <li><a href="/login">Login</a></li>

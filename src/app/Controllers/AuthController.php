@@ -52,7 +52,7 @@ class AuthController
 
         $username = htmlspecialchars($nicknameInput);
 
-        $user = (new User())->login_find_user($nicknameInput);
+        $user = (new User())->find_user($nicknameInput);
 
         // var_dump($user);
         // die();

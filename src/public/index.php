@@ -18,22 +18,23 @@ try {
             $displayIndex = new PageController();
             $displayIndex->index();
             break;
-        case "showUser":
-            include 'app/Views/showUser.view.php';
+        case "register":
+            $authController = new AuthController();
+            if ($method === "GET") $authController->showRegistrationForm();
+            if ($method === "POST") $authController->register($_POST['firstName'],$_POST['lastName'], $_POST['nickname'],$_POST['email'], $_POST['password']);
             break;
         case "login":
             $authController = new AuthController();
             if ($method === "GET") $authController->showLoginForm();
             if ($method === "POST") $authController->login($_POST['nickname'], $_POST['password']);
             break;
+        case "profile":
+            $displayProfile = new PageController();
+            $displayProfile->profile();
+            break;    
         case "logout":
             $authController = new AuthController();
             $authController->logout();
-            break;
-        case "register":
-            $authController = new AuthController();
-            if ($method === "GET") $authController->showRegistrationForm();
-            if ($method === "POST") $authController->register($_POST['firstName'],$_POST['lastName'], $_POST['nickname'],$_POST['email'], $_POST['password']);
             break;
         default:
             $pageController = new PageController();

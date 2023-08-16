@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\User;
 use Exception;
 
 class PageController
@@ -27,4 +28,16 @@ class PageController
         include 'app/Views/index.view.php';
         include 'app/Views/layout/footer.view.php';
     }
+
+    public function profile()
+    {
+
+        $displayCurrentUserProfile = (new User()) -> find_user($_SESSION["user"]["nickname"]);
+
+        include 'app/Views/layout/header.view.php';
+        include "app/Views/profile.view.php";
+        include 'app/Views/layout/footer.view.php';
+    }
+
+    
 }
