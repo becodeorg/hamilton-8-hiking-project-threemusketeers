@@ -1,3 +1,4 @@
+</main>
 <style>
   footer {
     text-align: center;

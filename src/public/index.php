@@ -21,9 +21,10 @@ try {
         break;
         
         case "hikesdetails":
-            if ($method == "GET") {
+            
                 $HikesDetailsController = new HikesDetailsController();
-            }
+                $HikesDetailsController->Hikesdetails();
+            
         break;
             
         case "register":
