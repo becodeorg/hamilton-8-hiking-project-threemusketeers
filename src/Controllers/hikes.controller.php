@@ -1,13 +1,9 @@
-<!--For the INDEX-->
 <?php
 declare(strict_types=1);
-
 namespace Models;
-
 use PDO;
 use PDOStatement;
 require_once 'vendor/autoload.php';
-
 use Models\Database;
 
 try {
@@ -21,4 +17,3 @@ try {
     exit();
 }
 ?>
-
