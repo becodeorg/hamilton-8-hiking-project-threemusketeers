@@ -55,4 +55,11 @@ class TagsController
         header('location:/tags/gestion');
 
     }
+
+    public function delete($id)
+    {
+        $tag = new Tag();
+        $tag->delete($id);
+        header('location:/tags/gestion');
+    }
 }

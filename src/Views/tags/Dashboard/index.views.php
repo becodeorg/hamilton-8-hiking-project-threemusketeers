@@ -14,7 +14,7 @@
         ?>
         <tr>
             <td><?=$tag->name?></td>
-            <td><a href="/tags/update?id=<?=$tag->id?>"> Modifier</a>-  <a href="#"> supprimer</a></td>
+            <td><a href="/tags/update?id=<?=$tag->id?>"> Modifier</a>-  <a href="/tags/delete?id=<?=$tag->id?>"> supprimer</a></td>
         </tr>
         <?php
     }

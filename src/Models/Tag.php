@@ -36,4 +36,11 @@ class Tag extends Database
        $this->query($sql,[$name]);
 
     }
+
+    public function delete(int $id)
+    {
+      $sql ="DELETE  FROM Tags
+            WHERE id= $id";
+      $this->query($sql);
+    }
 }

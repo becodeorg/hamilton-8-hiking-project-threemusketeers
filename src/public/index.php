@@ -150,6 +150,11 @@ try {
             }
 
             break;
+
+        case "tags/delete":
+            $tagsController = new  TagsController();
+            $tagsController->delete($_GET['id']);
+            break;
     }
 } catch (Exception $e) {
 
