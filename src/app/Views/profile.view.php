@@ -40,7 +40,7 @@ foreach($displayCurrentUserProfile as $key=>$value){
 
 
 <a href="/modify">Modify</a>
-<!-- <button role="link" href="/">Modify</button> -->
+
     
 
 
