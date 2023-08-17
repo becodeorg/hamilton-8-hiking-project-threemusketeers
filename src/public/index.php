@@ -59,25 +59,4 @@ try {
     $pageController->page_500($e->getMessage());
 }
 
-// use Controllers\HikesController;
-// use Controllers\TagsController;
-// use Controllers\UsersController;
-
-
-
-// try {
-//     $url_path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), "/");
-//     $method = $_SERVER['REQUEST_METHOD']; // GET -- POST
-//     switch ($url_path) {
-//         case "":
-//         case "index":
-//                 $IndexController = new IndexController();
-//                 $IndexController->index();
-//         break;
-        
-        
-//         }
-//     } catch (Exception $e) {
-//         print_r($e->getMessage());
-//     }
 ?>

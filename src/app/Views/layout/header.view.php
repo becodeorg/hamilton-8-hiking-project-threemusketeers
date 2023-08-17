@@ -35,10 +35,16 @@
   </ul>
   <ul>
     <!--ADD THE USER NAME / NEED PROFILE DATA-->
-    <li>Hello User<?php $name ?></li>
-    <li><a href="/login">Log-in</a></li>
-    <li><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></li>
-    <li><a href="/profile" role="button"> <i class="fa-solid fa-user"></i>   My profile</a></li> 
+    <?php
+      if($_SESSION["user"]){
+        echo "<li>Hello, " . $_SESSION["user"]["nickname"] . "</li>";
+        echo "<li><a href='/logout'><i class='fa-solid fa-right-from-bracket'></i></a></li>";
+        echo "<li><a href='/profile' role='button'> <i class='fa-solid fa-user'></i>   My profile</a></li>";
+      }else{
+        echo "<li><a href='/login'>Login</a></li>";
+        echo "<li><a href='/register'>Register</a></li>";
+      }
+    ?>
   </ul>
 </nav>
 <main>
