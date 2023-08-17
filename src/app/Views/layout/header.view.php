@@ -37,9 +37,17 @@
     <!--ADD THE USER NAME / NEED PROFILE DATA-->
     <?php
       if($_SESSION["user"]){
-        echo "<li>Hello, " . $_SESSION["user"]["nickname"] . "</li>";
-        echo "<li><a href='/logout'><i class='fa-solid fa-right-from-bracket'></i></a></li>";
-        echo "<li><a href='/profile' role='button'> <i class='fa-solid fa-user'></i>   My profile</a></li>";
+        if($_SESSION["user"]["admin"] == 1){
+          echo "<li>Hello, " . $_SESSION["user"]["nickname"] . "</li>";
+          echo "<li><a href='/logout'><i class='fa-solid fa-right-from-bracket'></i></a></li>";
+          echo "<li><a href='/profile' role='button'> <i class='fa-solid fa-user'></i>   My profile</a></li>";
+          echo "<li><a href='/#'>Admin</a></li>";
+        }else{
+          echo "<li>Hello, " . $_SESSION["user"]["nickname"] . "</li>";
+          echo "<li><a href='/profile' role='button'> <i class='fa-solid fa-user'></i>   My profile</a></li>";
+          echo "<li><a href='/myHikes' role='button'>My hikes</li>";
+          echo "<li><a href='/logout'><i class='fa-solid fa-right-from-bracket'></i></a></li>";
+        }
       }else{
         echo "<li><a href='/login'>Login</a></li>";
         echo "<li><a href='/register'>Register</a></li>";

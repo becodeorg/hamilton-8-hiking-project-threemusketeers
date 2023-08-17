@@ -8,8 +8,8 @@ use Exception;
 
 class IndexController
 {
-    public function index()
-    {
+    public function index(){     
+
         try {
             $data = new Hikes();
             $hikes = $data->getAllHikes();
@@ -19,6 +19,7 @@ class IndexController
         } catch (Exception $e) {
             print_r($e->getMessage());
         }
+
     }
 }
 
