@@ -2,6 +2,7 @@
 <style>
   footer {
     text-align: center;
+    bottom: 0;
   }
 </style>
 <footer>

@@ -52,7 +52,8 @@ try {
             break;
         case "hikesdetails":
             $HikesDetailsController = new HikesDetailsController();
-            $HikesDetailsController->hikesDetails();
+            $hike = $HikesDetailsController->hikesDetails();
+            echo $hike;
         break;
         default:
             $pageController = new PageController();

@@ -34,9 +34,10 @@
                             </ul>
                         </td>
                     </tr>
-                
             <?php endforeach; ?>
             </table>
+            <!--This button don't work for the moment-->
+            <button> See more </button>
     <?php else: ?>
         <p>Look like there is no available hikes for the moment...</p>
     <?php endif; ?>
