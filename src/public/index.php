@@ -45,9 +45,10 @@ try {
         case "hikesUser":
             (new PageController())->display_user_hikes();
             break;
-        case "hikesdetails?id=":
+        case "hikesdetails":
             $HikesDetailsController = new HikesDetailsController();
-            $HikesDetailsController->hikesDetails();
+            $hike = $HikesDetailsController->hikesDetails();
+            echo $hike;
         break;
         default:
             $pageController = new PageController();
