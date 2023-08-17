@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\User;
+use App\Models\Hikes;
 use Exception;
 
 class PageController
@@ -26,9 +27,15 @@ class PageController
 
     public function index(){     
 
-        include 'app/Views/layout/header.view.php';
-        include 'app/Views/index.view.php';
-        include 'app/Views/layout/footer.view.php';
+        try {
+            $data = new Hikes();
+            $hikes = $data->getAllHikes();
+            include 'app/Views/layout/header.view.php';
+            include 'app/Views/index.view.php';
+            include 'app/Views/layout/footer.view.php';
+        } catch (Exception $e) {
+            print_r($e->getMessage());
+        }
 
     }
 
@@ -47,6 +54,17 @@ class PageController
 
         include 'app/Views/layout/header.view.php';
         include "app/Views/hikesUser.view.php";
+        include 'app/Views/layout/footer.view.php';
+        
+    }
+
+    public function display_hikes_details(){
+
+        $hike = (new HikesDetailsController()) -> hikesDetails();
+        var_dump($hike);
+        die();
+        include 'app/Views/layout/header.view.php';
+        include 'app/Views/hikesdetails.view.php';
         include 'app/Views/layout/footer.view.php';
         
     }

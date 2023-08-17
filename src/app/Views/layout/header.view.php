@@ -1,28 +1,44 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css">
-    <title>Hiking app</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Hiking Project</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <script src="https://kit.fontawesome.com/45ba28c0b3.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/"><strong>Hiking app</strong></a></li>
-            </ul>
-            <ul>
-                <?php if (!empty($_SESSION['user'])): ?>
-                    <li><a href="/profile">My profile</a></li>
-                    <li><a href="/logout">Logout</a></li>
-                <?php else: ?>
-                    <li><a href="/login">Login</a></li>
-                    <li><a href="/register">Register</a></li>
-                <?php endif; ?>
-            </ul>
-        </nav>
-    </header>
-    <main>
+
+<style>
+  body{
+    padding : 50px 50px 0 50px;
+  }
+  i {
+    padding : 5px;
+  }
+  .tag{
+    background-color : #edf0f3; 
+    border-radius : 10px; 
+    padding: 5px;
+    text-align: center;
+    border : 1px solid #d9dadb;
+  }
+  #grid-solopage{
+    margin-bottom: 25px;
+  }
+</style>
+
+<nav>
+  <ul>
+    <li><a href="/"><i class="fa-solid fa-house"></i></a></li>
+    <li><strong>The Hiking Project.com</strong></li>
+  </ul>
+  <ul>
+    <!--ADD THE USER NAME / NEED PROFILE DATA-->
+    <li>Hello User<?php $name ?></li>
+    <li><a href="/login">Log-in</a></li>
+    <li><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></li>
+    <li><a href="/profile" role="button"> <i class="fa-solid fa-user"></i>   My profile</a></li> 
+  </ul>
+</nav>
+<main>

@@ -1,9 +1,10 @@
 <?php
 declare(strict_types=1);
-namespace Controllers;
+namespace App\Controllers;
 use PDO;
 use PDOStatement;
-use Models\Hikes;
+use App\Models\Hikes;
+use Exception;
 
 class IndexController
 {
@@ -12,9 +13,9 @@ class IndexController
         try {
             $data = new Hikes();
             $hikes = $data->getAllHikes();
-            include '../views/layout/header.view.php';
-            include '../views/index.view.php';
-            include '../views/layout/footer.view.php';
+            include 'app/Views/layout/header.view.php';
+            include 'app/Views/index.view.php';
+            include 'app/Views/layout/footer.view.php';
         } catch (Exception $e) {
             print_r($e->getMessage());
         }
@@ -23,7 +24,7 @@ class IndexController
 
 try {
     //
-} catch (PDOException $e) {
+} catch (\PDOException $e) {
     echo "Database connection error: " . $e->getMessage();
     exit();
 }
