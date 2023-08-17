@@ -14,15 +14,17 @@
     <input type="number" name="elevation_gain" id="elevation_gain">
     <label for="description"> description</label>
   <textarea id="description" name="description"></textarea>
-    <select name="tags">
+
         <?php
         foreach ($datas as $data)
         {
             ?>
-            <option  value="<?= $data->id?>"><?=$data->name?> </option>
+
+            <label><input type="checkbox" name="tags[]"  value="<?=$data->id?>" > <?=$data->name?></label><br />
+
             <?php
         }
         ?>
-    </select>
+
     <input type="submit" value="save">
 </form>

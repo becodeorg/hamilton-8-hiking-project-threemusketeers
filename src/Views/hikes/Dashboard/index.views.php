@@ -13,13 +13,27 @@
     <tbody>
     <?php
         foreach ($hikes as $hike){
-
             ?>
             <tr>
                 <td><?=$hike->hikeName?></td>
                 <td><?=$hike->distance?></td>
                 <td><?=$hike->elevation_gain?></td>
-                <td><?=$hike->tagName?></td>
+                <td>
+                    <?php
+
+
+                        $HikesTagsController =  new \Controllers\HikestagsController();
+                        $datas =$HikesTagsController->find($hike->hikeID);
+
+
+                        foreach ($datas as $data)
+                        {
+                            echo $data->name."<br>" ;
+                        }
+
+
+                    ?>
+                </td>
                 <td><a href="/hikes/dashboard/show?name=<?=$hike->hikeName?>">voir</a>-<a href="/hikes/dashboard/update?id=<?=$hike->hikeID?>"> Modifier</a>-  <a href="/hikes/dashboard/delete?id=<?=$hike->hikeID?>"> supprimer</a></td>
             </tr>
 

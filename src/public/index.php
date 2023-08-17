@@ -61,7 +61,10 @@ try {
             }
             if ($method == 'POST'){
                 $hikesController = new HikesController();
-                $hikesController->store();
+                $lastID =$hikesController->store();
+                $hikeTagController = new HikestagsController();
+                $hikeTagController->store($lastID);
+
             }
 
             break;
@@ -73,19 +76,28 @@ try {
             break;
 
             case "hikes/dashboard/index":
+
             $hikesController = new HikesController();
+
             $hikesController->index();
             break;
 
         case "hikes/dashboard/delete":
             $hikesController = new HikesController();
             $hikesController->delete();
+            $hikeTagController = new HikestagsController();
+            //$hikeTagController->deleteHike($_GET['id']);
             break;
         case "hikes/dashboard/update":
+
             $authController = new authController();
-            if($authController->verification($_GET['id'])
-                ||$authController->verification($_POST['hikeID'])
-                || ($_SESSION['user']['admin'] == 1))
+            if ($method == "GET")
+            {
+                $response = $authController->verification($_GET["id"]);
+            }else{
+                $response = $authController->verification($_POST['hikeID']);
+            }
+            if($response || ($_SESSION['user']['admin'] == 1))
             {
 
                 if ($method == "GET")
@@ -98,6 +110,8 @@ try {
 
                     $hikesController = new HikesController();
                     $hikesController->store();
+                   $hikeTagController = new HikestagsController();
+                   $hikeTagController->update($_POST['tags'],$_POST['hikeID']);
                 }
             }
 
@@ -156,7 +170,7 @@ try {
             $tagsController = new  TagsController();
             $tagsController->delete($_GET['id']);
             $hikeTagController = new HikestagsController();
-            $hikeTagController->delete($_GET["id"]);
+            $hikeTagController->deleteTag($_GET["id"]);
 
             break;
     }

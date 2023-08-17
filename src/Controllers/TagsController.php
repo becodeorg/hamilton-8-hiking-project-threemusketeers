@@ -12,6 +12,10 @@ class TagsController
     }
 
 
+
+
+
+
     public function create()
     {
         include 'Views/layout/header.views.php';

@@ -16,6 +16,7 @@ class Tag extends Database
         $stmt =$this->query("SELECT *FROM Tags WHERE id = ?",[$id]);
         $data = $stmt->fetch(\PDO::FETCH_OBJ);
         return $data;
+
     }
 
 

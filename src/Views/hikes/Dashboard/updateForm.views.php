@@ -1,7 +1,7 @@
-
 <?php
 $controller = new \Controllers\TagsController();
 $datas =$controller->select();
+$hikeTagsController = new \Controllers\HikestagsController();
 ?>
 <form method="post" action="/hikes/dashboard/update">
     <label for="name" > votre nom</label>
@@ -14,16 +14,34 @@ $datas =$controller->select();
     <input type="number" name="elevation_gain"  value="<?=$hike->elevation_gain?>"id="elevation_gain">
     <label for="description"> description</label>
     <textarea id="description"  name="description"><?=$hike->description?>s</textarea>
-    <select name="tags">
-        <?php
-        foreach ($datas as $data)
+
+    <?php
+    foreach ($datas as $data)
+
+    {
+       // $hikeTagsController->isChecked($data->id,$hike->id));
+
+        if ( $hikeTagsController->isChecked($data->id,$hike->id)!= null)
         {
             ?>
-            <option  value="<?= $data->id?>"><?=$data->name?> </option>
+
+            <label><input type="checkbox" name="tags[]"  value="<?=$data->id?>"  checked> <?=$data->name?></label><br />
+
             <?php
+        }else{
+
+            ?>
+
+            <label><input type="checkbox" name="tags[]"  value="<?=$data->id?>" > <?=$data->name?></label><br />
+
+
+    <?php
         }
-        ?>
-    </select>
+
+    }
+    ?>
+
+
     <input type="hidden" name="hikeID" value="<?=$hike->id?>">
     <input type="submit" value="modifier">
 </form>

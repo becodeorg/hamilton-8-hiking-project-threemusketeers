@@ -24,7 +24,8 @@ class Auth extends Database
 
     public function verification($hikeID)
     {
-        $stmt = $this->query("SELECT * FROM Hikes_has_users WHERE hike = ? ",[$hikeID]);
+
+        $stmt = $this->query("SELECT * FROM Hikes WHERE Hikes.id = ? ",[$hikeID]);
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
 

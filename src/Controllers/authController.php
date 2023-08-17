@@ -23,10 +23,12 @@ class authController
         $auth->store($firstName,$lastName,$nickName,$email,$password);
 
         $_SESSION['user'] = [
+            'id'=> $auth->lastInsertId(),
             'firstName' => $firstName,
             'lastName' => $lastName,
             'nickName' => $nickName,
-            'email' => $email
+            'email' => $email,
+            'admin'=>0
         ];
         header('Location:http://localhost:3000/hikes/dashboard/index');
 
@@ -68,7 +70,8 @@ class authController
 
         $auth = new Auth();
         $hikes_has_user = $auth->verification($id);
-        if ($hikes_has_user->user == $_SESSION['user']['id'])
+
+        if ($hikes_has_user->user_id == $_SESSION['user']['id'])
         {
            return true;
         }else{

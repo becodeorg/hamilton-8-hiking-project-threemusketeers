@@ -3,6 +3,7 @@
 namespace Controllers;
 
 use Models\Hike;
+use Models\Hike_Tag;
 
 
 class HikesController
@@ -17,13 +18,15 @@ class HikesController
 
     public function store()
     {
+
+
         $name           =   htmlspecialchars($_POST['name']);
         $distance       =   $_POST['distance'];
         $duration       =   $_POST['duration'];
         $gain           =   $_POST['elevation_gain'];
         $description    =   htmlspecialchars($_POST['description']);
-        $tag_id         =   $_POST['tags'];
         $hikeID         =   isset($_POST['hikeID'])?$_POST['hikeID']:null;
+
 
             if (empty($name) || empty($distance) || empty($duration)|| empty($gain) || empty($description))
             {
@@ -33,11 +36,13 @@ class HikesController
 
             $model = new Hike();
 
-            $model->store($name,$distance,$duration,$gain,$description,$tag_id,$hikeID);
+            $model->store($name,$distance,$duration,$gain,$description,$hikeID);
+            return  $model->lastInsertId();
 
-            header('Location:http://localhost:3000/hikes/dashboard/index');
 
     }
+
+
 
 
     public function show($name)
@@ -51,11 +56,12 @@ class HikesController
 
     public function index()
     {
+
         $model = new Hike();
         $hikes = $model->findAll();
 
-            include 'Views/layout/header.views.php';
-            include 'Views/hikes/Dashboard/index.views.php';
+        include 'Views/layout/header.views.php';
+        include 'Views/hikes/Dashboard/index.views.php';
 
 
 
