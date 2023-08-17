@@ -45,7 +45,7 @@ try {
         case "hikesUser":
             (new PageController())->display_user_hikes();
             break;
-        case "hikesdetails":
+        case "hikesdetails?id=":
             $HikesDetailsController = new HikesDetailsController();
             $HikesDetailsController->hikesDetails();
         break;
