@@ -22,11 +22,4 @@ class IndexController
 
     }
 }
-
-try {
-    //
-} catch (\PDOException $e) {
-    echo "Database connection error: " . $e->getMessage();
-    exit();
-}
 ?>
