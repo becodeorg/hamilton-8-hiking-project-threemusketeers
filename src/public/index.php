@@ -6,7 +6,7 @@ session_start();
 
 use App\Controllers\AuthController;
 use App\Controllers\PageController;
-use App\Controllers\ProductController;
+use App\Models\User;
 use App\Controllers\IndexController;
 use App\Controllers\HikesDetailsController;
 
@@ -17,7 +17,7 @@ try {
     switch ($url_path) {
         case "":
         case "/index.php":
-            $displayIndex = new PageController();
+            $displayIndex = new IndexController();
             $displayIndex->index();
             break;
         case "register":
@@ -31,7 +31,12 @@ try {
             if ($method === "POST") $authController->login($_POST['nickname'], $_POST['password']);
             break;
         case "profile":
-            (new PageController())->profile();
+            $displayCurrentUserProfile = (new User()) -> find_user($_SESSION["user"]["nickname"]);
+
+            include 'app/Views/layout/header.view.php';
+            include "app/Views/profile.view.php";
+            include 'app/Views/layout/footer.view.php';
+            
             break;    
         case "logout":
             $authController = new AuthController();
@@ -42,8 +47,8 @@ try {
             if($method === "GET") $modifyUserInfo->showModifyForm();
             if($method === "POST") $modifyUserInfo->modifyUser($_POST['firstName'],$_POST['lastName'], $_POST['nickname'],$_POST['email'], $_POST['password']);
             break;
-        case "hikesUser":
-            (new PageController())->display_user_hikes();
+        case "hikesUser" || "myHikes":
+            (new HikesDetailsController())->display_user_hikes();
             break;
         case "hikesdetails":
             $HikesDetailsController = new HikesDetailsController();

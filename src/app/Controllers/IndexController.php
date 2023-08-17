@@ -8,8 +8,8 @@ use Exception;
 
 class IndexController
 {
-    public function index()
-    {
+    public function index(){     
+
         try {
             $data = new Hikes();
             $hikes = $data->getAllHikes();
@@ -19,13 +19,7 @@ class IndexController
         } catch (Exception $e) {
             print_r($e->getMessage());
         }
-    }
-}
 
-try {
-    //
-} catch (\PDOException $e) {
-    echo "Database connection error: " . $e->getMessage();
-    exit();
+    }
 }
 ?>
