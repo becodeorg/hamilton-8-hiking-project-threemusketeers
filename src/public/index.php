@@ -3,7 +3,6 @@ session_start();
 
 require_once 'vendor/autoload.php';
 
-
 use App\Controllers\AuthController;
 use App\Controllers\PageController;
 use App\Models\User;
