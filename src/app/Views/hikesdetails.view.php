@@ -2,12 +2,19 @@
 
     <!--TAG TO MODIFY ? -->
     <div class="grid" id="grid-solopage">
-                <div class="tag">tag 1</div>
-                <div class="tag">tag 2</div>
-                <div class="tag">tag 3</div>
-                <div class="tag">tag 4</div>
-                <div class="tag">tag 5</div>
-                <div class="tag">tag 6</div>
+
+        <?php
+
+        $hikesTagsController = new \App\Controllers\HikestagsController();
+        $tags =$hikesTagsController->find($hike['id']);
+        foreach ($tags as $tag)
+        {
+            ?>
+            <div class="tag"><?=$tag->name?></div>
+            <?php
+        }
+
+        ?>
     </div>
 
     <ul>

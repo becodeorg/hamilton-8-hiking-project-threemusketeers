@@ -28,9 +28,23 @@
                         <td>
                             <?php // foreach ($tags as $tag): ?>
                             <ul>
-                                <li>Tag 1 ++</li>
-                                <li>Tag 1 ++</li>
-                                <li>Tag 1 ++</li>
+                                <?php
+                                    $hikesTagsController = new \App\Controllers\HikestagsController();
+                                    $tags =$hikesTagsController->find($hike['id']);
+                                    if(empty($tags))
+                                    {
+                                        ?>
+                                        <li><?="/"?></li>
+                                    <?php                                    }
+                                    foreach ($tags as $tag)
+                                    {
+
+                                        ?>
+                                            <li><?=$tag->name?></li>
+                                        <?php
+                                    }
+
+                                ?>
                             </ul>
                         </td>
                     </tr>

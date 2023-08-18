@@ -2,10 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\User;
 use App\Models\Hikes;
-use Exception;
-
 class PageController
 {
     public function page_404(): void{
@@ -25,11 +22,13 @@ class PageController
 
     }
 
+
     public function index(){     
 
         try {
             $data = new Hikes();
             $hikes = $data->getAllHikes();
+
             include 'app/Views/layout/header.view.php';
             include 'app/Views/index.view.php';
             include 'app/Views/layout/footer.view.php';
@@ -51,11 +50,11 @@ class PageController
     public function display_user_hikes(){
 
         $displayUserHikes = (new User()) -> user_hikes($_SESSION["user"]["id"]);
-
         include 'app/Views/layout/header.view.php';
         include "app/Views/hikesUser.view.php";
         include 'app/Views/layout/footer.view.php';
         
     }
+
 
 }

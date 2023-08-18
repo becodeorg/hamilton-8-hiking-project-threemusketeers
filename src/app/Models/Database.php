@@ -8,10 +8,11 @@ use PDOStatement;
 
 class Database
 {
-    private PDO $pdo;
+    private  $pdo;
 
     public function __construct()
     {
+
         $this->pdo = new PDO(
             'mysql:host=' . getenv('PROD_DB_HOST') . ';dbname=' . getenv('PROD_DATABASE'),
             getenv('PROD_USERNAME'),
@@ -25,7 +26,9 @@ class Database
     public function query(string $query, array $params = []): PDOStatement
     {
         $stmt = $this->pdo->prepare($query);
+
         $stmt->execute($params);
+
 
         return $stmt;
     }
