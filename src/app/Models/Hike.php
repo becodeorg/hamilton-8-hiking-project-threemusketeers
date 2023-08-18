@@ -64,9 +64,6 @@ WHERE Users.id =".(int)$_SESSION['user']['id'];
             $sql ="SELECT *,Hikes.id as hikeID,Hikes.name as hikeName
 FROM Hikes ";
 
-
-
-
         }
 
         $stmt = $this->query($sql);
