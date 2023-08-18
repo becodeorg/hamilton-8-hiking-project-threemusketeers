@@ -25,10 +25,5 @@ $userInfo = (new User())->find_user($_SESSION["user"]["nickname"]);
         <input type="email" id="email" name="email" value=<?=$userInfo["email"]?>>
     </div>
     
-    <!-- <div>
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password">
-    </div> -->
-   
     <button type="submit">Modify!</button>
 </form>

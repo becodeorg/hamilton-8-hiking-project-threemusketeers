@@ -1,5 +1,3 @@
-
-<a href="/hikes/dashboard/create">Creer un hike</a>
 <table>
     <tr>
         <th>Type of hike</th>
@@ -43,4 +41,11 @@
         </tr>
     <?php endforeach; ?>
 </table>
+
+<a href='/newHike'><button>new hike</button></a>
+
+
+
+
+
 

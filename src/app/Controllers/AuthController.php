@@ -3,11 +3,16 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
+require_once 'vendor/autoload.php';
 
 use Exception;
 use App\Models\User;
 use App\Models\Database;
 use App\Models\Auth;
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception as PHPMailerException;
 
 
 class AuthController
@@ -32,7 +37,6 @@ class AuthController
         if (empty($firstNameInput) || empty($lastNameInput) || empty($nicknameInput) || empty($emailInput) || empty($passwordInput)) {
             throw new Exception('Form not completed.');
         }
-
         $firstName = htmlspecialchars($firstNameInput);
         $lastName = htmlspecialchars($lastNameInput);
         $nickname = htmlspecialchars($nicknameInput);
@@ -40,11 +44,43 @@ class AuthController
         $passwordHash = password_hash($passwordInput, PASSWORD_DEFAULT);
 
         $user = (new User())->register_new_user($firstName, $lastName, $nickname, $email, $passwordHash);
-        
+     
+         // Send registration email
+        $this->sendRegistrationEmail($email, $firstName);
+
         $session = (new User())->store_session($firstName, $lastName, $nickname, $email);
-        
+            
         http_response_code(302);
         header('location: /hikesUser');
+    }
+
+    public function sendRegistrationEmail($email, $firstName) {
+
+        /////////////////////////////////////////////////////////////// problem was the new PHPMailer(true) 
+        $mail = new PHPMailer;
+    
+        try {
+            // SMTP settings
+            $mail->SMTPDebug = 3;
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'hikingappbecode@gmail.com';
+            $mail->Password = 'ouorpsrfzlsktuph';
+            $mail->SMTPSecure = "tls"; 
+            $mail->Port = 587; 
+    
+            // Email content
+            $mail->setFrom('hikingappbecode@gmail.com', 'Hiking app team');
+            $mail->addAddress($email, $firstName);
+            $mail->isHTML(true);
+            $mail->Subject = 'Welcome to Our Hiking app!';
+            $mail->Body = "<b>Hello, you have successfully created an account in our Hiking app.</b>";
+    
+            $mail->send();
+        } catch (PHPMailerException $e) {
+            return $mail->ErrorInfo;
+        }
     }
 
 

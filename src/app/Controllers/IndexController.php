@@ -1,8 +1,7 @@
 <?php
 declare(strict_types=1);
 namespace App\Controllers;
-use PDO;
-use PDOStatement;
+
 use App\Models\Hikes;
 use Exception;
 
