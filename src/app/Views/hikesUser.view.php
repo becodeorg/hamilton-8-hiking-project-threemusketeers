@@ -1,5 +1,5 @@
 
-<a href="/hikes/dashboard/create">Creer un hike</a>
+<a href="/hikes/dashboard/create" role='button'>Create new a hike</a>
 <table>
     <tr>
         <th>Type of hike</th>

@@ -32,7 +32,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 switch ($url_path)
 {
     case "":
-    case "/index.php":
+    case "index":
 
         $displayIndex = new PageController();
         $displayIndex->index();
