@@ -4,7 +4,6 @@ session_start();
 
 require_once 'vendor/autoload.php';
 
-
 use App\Controllers\AuthController;
 use App\Controllers\PageController;
 
@@ -29,8 +28,7 @@ use Controllers\HikestagsController;
 $url_path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), "/");
 $method = $_SERVER['REQUEST_METHOD'];
 
-switch ($url_path)
-{
+switch ($url_path) {
     case "":
     case "/index.php":
 
@@ -40,9 +38,10 @@ switch ($url_path)
     case "register":
         $authController = new AuthController();
         if ($method === "GET") $authController->showRegistrationForm();
-        if ($method === "POST") $authController->register($_POST['firstName'],$_POST['lastName'], $_POST['nickname'],$_POST['email'], $_POST['password']);
+        if ($method === "POST") $authController->register($_POST['firstName'], $_POST['lastName'], $_POST['nickname'], $_POST['email'], $_POST['password']);
         break;
     case "login":
+
         $authController = new AuthController();
         if ($method === "GET") $authController->showLoginForm();
         if ($method === "POST") $authController->login($_POST['nickname'], $_POST['password']);
@@ -50,48 +49,44 @@ switch ($url_path)
     case "hikes/dashboard/update":
 
         $authController = new authController();
-        if ($method == "GET")
-        {
+        if ($method == "GET") {
             $response = $authController->verification($_GET["id"]);
-        }else{
+        } else {
             $response = $authController->verification($_POST['hikeID']);
         }
-        if($response || ($_SESSION['user']['admin'] == 1))
-        {
+        if ($response || ($_SESSION['user']['admin'] == 1)) {
 
-            if ($method == "GET")
-            {
+            if ($method == "GET") {
                 $hikesController = new HikesController();
                 $hikesController->update();
 
             }
-            if ($method == 'POST'){
+            if ($method == 'POST') {
 
                 $hikesController = new HikesController();
                 $hikesController->store();
                 $hikeTagController = new HikestagsController();
-                $hikeTagController->update($_POST['tags'],$_POST['hikeID']);
+                $hikeTagController->update($_POST['tags'], $_POST['hikeID']);
             }
         }
 
         break;
-         case "users/gestion":
+    case "users/gestion":
 
-        if($_SESSION['user']['admin'] == 1){
+        if ($_SESSION['user']['admin'] == 1) {
             $usersController = new usersController();
             $usersController->index();
         }
-    break;
+        break;
     case "users/gestion/update":
 
-        if($_SESSION['user']['admin'] == 1){
+        if ($_SESSION['user']['admin'] == 1) {
 
-            if ($method == "GET")
-            {
+            if ($method == "GET") {
                 $usersController = new usersController();
                 $usersController->updateForm();
             }
-            if ($method == 'POST'){
+            if ($method == 'POST') {
                 $usersController = new usersController();
                 $usersController->store();
 
@@ -116,13 +111,11 @@ switch ($url_path)
 
         break;
     case "tags/update":
-        if ($method == "GET")
-        {
+        if ($method == "GET") {
             $tagsController = new TagsController();
             $tagsController->updateForm($_GET['id']);
         }
-        if ($method == "POST")
-        {
+        if ($method == "POST") {
             ;
             $tagsController = new TagsController();
             $tagsController->update();
@@ -142,7 +135,7 @@ switch ($url_path)
 
         break;
     case "profile":
-        $displayCurrentUserProfile = (new User()) -> find_user($_SESSION["user"]["nickname"]);
+        $displayCurrentUserProfile = (new User())->find_user($_SESSION["user"]["nickname"]);
 
         include 'app/Views/layout/header.view.php';
         include "app/Views/profile.view.php";
@@ -155,27 +148,25 @@ switch ($url_path)
         break;
     case "modify":
         $modifyUserInfo = new AuthController();
-        if($method === "GET") $modifyUserInfo->showModifyForm();
-        if($method === "POST") $modifyUserInfo->modifyUser($_POST['firstName'],$_POST['lastName'], $_POST['nickname'],$_POST['email'], $_POST['password']);
+        if ($method === "GET") $modifyUserInfo->showModifyForm();
+        if ($method === "POST") $modifyUserInfo->modifyUser($_POST['firstName'], $_POST['lastName'], $_POST['nickname'], $_POST['email'], $_POST['password']);
         break;
     case "hikesUser" || "myHikes":
         (new HikesDetailsController())->display_user_hikes();
         break;
 
 
-
     case "hikes/dashboard/create":
-        if ($method == "GET")
-        {
+        if ($method == "GET") {
 
             $hikesController = new HikesController();
 
             $hikesController->create();
 
         }
-        if ($method == 'POST'){
+        if ($method == 'POST') {
             $hikesController = new HikesController();
-            $lastID =$hikesController->store();
+            $lastID = $hikesController->store();
             $hikeTagController = new HikestagsController();
             $hikeTagController->store($lastID);
 
@@ -186,32 +177,28 @@ switch ($url_path)
     case "hikes/dashboard/update":
 
         $authController = new authController();
-        if ($method == "GET")
-        {
+        if ($method == "GET") {
             $response = $authController->verification($_GET["id"]);
-        }else{
+        } else {
             $response = $authController->verification($_POST['hikeID']);
         }
-        if($response || ($_SESSION['user']['admin'] == 1))
-        {
+        if ($response || ($_SESSION['user']['admin'] == 1)) {
 
-            if ($method == "GET")
-            {
+            if ($method == "GET") {
                 $hikesController = new HikesController();
                 $hikesController->update();
 
             }
-            if ($method == 'POST'){
+            if ($method == 'POST') {
 
                 $hikesController = new HikesController();
                 $hikesController->store();
                 $hikeTagController = new HikestagsController();
-                $hikeTagController->update($_POST['tags'],$_POST['hikeID']);
+                $hikeTagController->update($_POST['tags'], $_POST['hikeID']);
             }
         }
 
         break;
-
 
 
     case "tags/dashboard/create":
@@ -219,7 +206,7 @@ switch ($url_path)
             $tagsConroller = new TagsController();
             $tagsConroller->create();
         }
-        if ($method == 'POST'){
+        if ($method == 'POST') {
             $tagsController = new TagsController();
             $tagsController->store();
         }
@@ -229,8 +216,9 @@ switch ($url_path)
         $pageController = new PageController();
         $pageController->page_404();
         break;
-
 }
+
+
 /*
 <<<<<<< HEAD
 session_start();
@@ -322,8 +310,8 @@ try {
             include 'app/Views/layout/header.view.php';
             include "app/Views/profile.view.php";
             include 'app/Views/layout/footer.view.php';
-            
-            break;    
+
+            break;
         case "logout":
             $authController = new AuthController();
             $authController->logout();

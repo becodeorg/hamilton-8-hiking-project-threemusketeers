@@ -13,6 +13,7 @@ class IndexController
         try {
             $data = new Hikes();
             $hikes = $data->getAllHikes();
+
             include 'app/Views/layout/header.view.php';
             include 'app/Views/index.view.php';
             include 'app/Views/layout/footer.view.php';

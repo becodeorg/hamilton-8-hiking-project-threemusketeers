@@ -8,6 +8,7 @@ class usersController
 
         $datas = new User();
         $users =$datas->findALl();
+
         include 'app/Views/layout/header.view.php';
         include 'app/Views/users/Dashboard/index.views.php';
     }

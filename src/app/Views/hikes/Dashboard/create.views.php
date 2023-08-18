@@ -4,7 +4,7 @@
     $datas =$controller->select();
 ?>
 <form method="POST" action="/hikes/dashboard/create">
-    <label for="name"> votre nom</label>
+    <label for="name">  nom</label>
     <input type="text" name="name" id="name">
     <label for="distance">  distance</label>
     <input type="number" name="distance" id="distance">

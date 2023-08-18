@@ -48,7 +48,9 @@ class AuthController
     }
 
 
-    public function login(string $nicknameInput, string $passwordInput){
+    public function login(){
+        $nicknameInput = $_POST['nickname'];
+        $passwordInput = $_POST['password'];
         if (empty($nicknameInput) || empty($passwordInput)) {
             throw new Exception('Form not completed.');
         }
