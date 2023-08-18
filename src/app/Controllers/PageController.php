@@ -2,10 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Models\User;
-use App\Models\Hikes;
-use Exception;
-
 class PageController
 {
     public function page_404(): void{
@@ -25,6 +21,7 @@ class PageController
 
     }
 
+<<<<<<< HEAD
     public function index(){     
 
         try {
@@ -57,4 +54,6 @@ class PageController
         
     }
 
+=======
+>>>>>>> 84dceb706d9dd5a70b0c479d47cb5f7658ade799
 }
