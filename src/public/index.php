@@ -47,8 +47,14 @@ switch ($url_path)
         if ($method === "GET") $authController->showLoginForm();
         if ($method === "POST") $authController->login($_POST['nickname'], $_POST['password']);
         break;
+
     case "profile":
-        (new PageController())->profile();
+        $displayCurrentUserProfile = (new User()) -> find_user($_SESSION["user"]["nickname"]);
+
+        include 'app/Views/layout/header.view.php';
+        include "app/Views/profile.view.php";
+        include 'app/Views/layout/footer.view.php';
+
         break;
     case "logout":
         $authController = new AuthController();
@@ -59,9 +65,12 @@ switch ($url_path)
         if($method === "GET") $modifyUserInfo->showModifyForm();
         if($method === "POST") $modifyUserInfo->modifyUser($_POST['firstName'],$_POST['lastName'], $_POST['nickname'],$_POST['email'], $_POST['password']);
         break;
-    case "hikesUser":
-        (new PageController())->display_user_hikes();
+    case "hikesUser" || "myHikes":
+        (new HikesDetailsController())->display_user_hikes();
         break;
+    /*case "hikesUser":
+        (new PageController())->display_user_hikes();
+        break;*/
     case "hikesdetails":
         $HikesDetailsController = new HikesDetailsController();
         $hike = $HikesDetailsController->hikesDetails();
