@@ -1,19 +1,20 @@
 <?php
 
-namespace Controllers;
+namespace App\Controllers;
 
-use Models\Hike;
-use Models\Hike_Tag;
+
+use App\Models\Hike;
 
 
 class HikesController
 {
     public function create()
     {
-        include 'Views/layout/header.views.php';
-        include 'Views/hikes/Dashboard/create.views.php';
+        include 'app/Views/layout/header.view.php';
 
-        #include 'views/layout/footer.view.php';
+        include 'app/Views/hikes/Dashboard/create.views.php';
+
+        include 'app/Views/layout/footer.view.php';
     }
 
     public function store()
@@ -36,7 +37,11 @@ class HikesController
 
             $model = new Hike();
 
+
             $model->store($name,$distance,$duration,$gain,$description,$hikeID);
+
+
+
             return  $model->lastInsertId();
 
 
@@ -60,11 +65,9 @@ class HikesController
         $model = new Hike();
         $hikes = $model->findAll();
 
-        include 'Views/layout/header.views.php';
-        include 'Views/hikes/Dashboard/index.views.php';
-
-
-
+        include 'app/Views/layout/header.view.php';
+        include 'app/Views/hikes/Dashboard/index.views.php';
+        include 'app/Views/layout/footer.view.php';
     }
 
 public function delete()
@@ -84,8 +87,10 @@ public function update()
     $model = new Hike();
     $hike = $model->getByID($_GET['id']);
 
-    include 'Views/layout/header.views.php';
-    include 'Views/hikes/Dashboard/updateForm.views.php';
+    include 'app/Views/layout/header.view.php';
+    include 'app/Views/hikes/Dashboard/updateForm.views.php';
+    include 'app/Views/layout/footer.view.php';
+
 }
 
 

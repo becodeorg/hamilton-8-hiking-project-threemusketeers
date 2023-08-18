@@ -1,8 +1,9 @@
 <?php
-
-namespace Models;
-use Models\Database;
+declare(strict_types=1);
+namespace App\Models;
+use App\Models\Database;
 use PDO;
+use Exception;
 class Hike extends Database
 {
     public function store($name,$distance,$duration,$gain,$description,$hikeID)
@@ -13,22 +14,11 @@ class Hike extends Database
             if (is_null($hikeID))
             {
 
-                $sql ="INSERT INTO Hikes
+                    $sql = "INSERT INTO Hikes
             (name,distance,duration,elevation_gain,description,user_id,created_at,updated_at) VALUES (?, ?, ?, ?,? ,? ,? ,?);";
 
-
-                $stmt = $this->query($sql,
-                    [$name,$distance,$duration,$gain,$description,$_SESSION['user']['id'],$date,$date]);
-
-
-
-
-             /*   $sql ="INSERT INTO Hikes_has_users
-                 (hike,user) VALUES (?, ?);";*/
-              //  $userID = $_SESSION['user']['id'];
-
-               /* $stmt = $this->query($sql,
-                    [$this->lastInsertId(),$userID]);*/
+                    $stmt = $this->query($sql,
+                        [$name, $distance, $duration, $gain, $description, $_SESSION['user']['id'], $date, $date]);
 
             }else{
 
@@ -71,16 +61,12 @@ FROM Hikes
 WHERE Users.id =".(int)$_SESSION['user']['id'];
 
         }else{
-            /*$sql ="SELECT *,Hikes.id as hikeID,Hikes.name as hikeName, Tags.name as tagName
-FROM Hikes 
- 	INNER JOIN Hikes_has_tags ON Hikes_has_tags.hike = Hikes.id
-    INNER JOIN Tags ON Tags.id = Hikes_has_tags.tag
-    INNER JOIN Hikes_has_users ON Hikes.id = Hikes_has_users.hike 
-    INNER JOIN Users on Hikes_has_users.user = Users.id";*/
+            $sql ="SELECT *,Hikes.id as hikeID,Hikes.name as hikeName
+FROM Hikes ";
 
-            $sql="SELECT Hikes.*, Hikes.id AS hikeID, Hikes.name AS hikeName 
-FROM Hikes 
-    INNER JOIN Hikes_has_tags ON Hikes_has_tags.hike = Hikes.id GROUP BY hikeID";
+
+
+
         }
 
         $stmt = $this->query($sql);

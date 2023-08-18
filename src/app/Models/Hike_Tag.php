@@ -1,7 +1,7 @@
 <?php
 
-namespace Models;
-use Models\Database;
+namespace App\Models;
+use App\Models\Database;
 class Hike_Tag extends Database
 {
     public function deleteTag($tagID)

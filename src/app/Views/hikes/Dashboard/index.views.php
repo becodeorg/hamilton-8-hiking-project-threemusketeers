@@ -1,5 +1,5 @@
-<a href="/hikes/dashboard/create">Creer</a>
-<a href="/tags/dashboard/create">Creer un nouveau tag</a>
+<a href="#">Creer</a>
+<a href="#">Creer un nouveau tag</a>
 <table>
     <thead>
     <tr>
@@ -13,6 +13,7 @@
     <tbody>
     <?php
         foreach ($hikes as $hike){
+
             ?>
             <tr>
                 <td><?=$hike->hikeName?></td>
@@ -21,16 +22,17 @@
                 <td>
                     <?php
 
-
-                        $HikesTagsController =  new App\Controllers\HikestagsController();
-
+                        $HikesTagsController = new \App\Controllers\HikestagsController();
                         $datas =$HikesTagsController->find($hike->hikeID);
 
-                        var_dump($datas);
-                        die();
 
+                        if (empty($datas))
+                        {
+                            echo "/";
+                        }
                         foreach ($datas as $data)
                         {
+
                             echo $data->name."<br>" ;
                         }
 
