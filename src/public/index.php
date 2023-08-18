@@ -9,6 +9,7 @@ use App\Controllers\PageController;
 use App\Models\User;
 use App\Controllers\IndexController;
 use App\Controllers\HikesDetailsController;
+use App\Controllers\NewHike;
 
 try {
     $url_path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), "/");
@@ -32,11 +33,9 @@ try {
             break;
         case "profile":
             $displayCurrentUserProfile = (new User()) -> find_user($_SESSION["user"]["nickname"]);
-
             include 'app/Views/layout/header.view.php';
             include "app/Views/profile.view.php";
             include 'app/Views/layout/footer.view.php';
-            
             break;    
         case "logout":
             $authController = new AuthController();
@@ -47,13 +46,18 @@ try {
             if($method === "GET") $modifyUserInfo->showModifyForm();
             if($method === "POST") $modifyUserInfo->modifyUser($_POST['firstName'],$_POST['lastName'], $_POST['nickname'],$_POST['email'], $_POST['password']);
             break;
-        case "hikesUser" || "myHikes":
+        case "hikesUser" :
+        case "myHikes":
             (new HikesDetailsController())->display_user_hikes();
+            break;
+        case "newHike":
+            $newHike = new NewHike();
+            if ($method === "GET") $newHike->showNewHikeForm();
+            if ($method === "POST") $newHike->addNewHike($_POST['name'], $_POST['distance'], $_POST['duration'],$_POST['elevation_gain'],$_POST['description'],$_SESSION["user"]["id"]);
             break;
         case "hikesdetails":
             $HikesDetailsController = new HikesDetailsController();
             $hike = $HikesDetailsController->hikesDetails();
-            echo $hike;
         break;
         default:
             $pageController = new PageController();

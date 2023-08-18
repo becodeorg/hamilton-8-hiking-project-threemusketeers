@@ -39,7 +39,7 @@ foreach($displayCurrentUserProfile as $key=>$value){
  <?php endforeach; ?>
 
 
-<a href="/modify">Modify</a>
+ <a href='/modify' role='button'>Modify</a>
 
     
 
