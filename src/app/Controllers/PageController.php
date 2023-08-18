@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Hikes;
 class PageController
 {
     public function page_404(): void{
@@ -21,12 +22,13 @@ class PageController
 
     }
 
-<<<<<<< HEAD
+
     public function index(){     
 
         try {
             $data = new Hikes();
             $hikes = $data->getAllHikes();
+
             include 'app/Views/layout/header.view.php';
             include 'app/Views/index.view.php';
             include 'app/Views/layout/footer.view.php';
@@ -54,6 +56,5 @@ class PageController
         
     }
 
-=======
->>>>>>> 84dceb706d9dd5a70b0c479d47cb5f7658ade799
+
 }
