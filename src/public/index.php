@@ -48,6 +48,13 @@ switch ($url_path)
         if ($method === "POST") $authController->login($_POST['nickname'], $_POST['password']);
         break;
 
+    case "hikesdetails":
+
+        $HikesDetailsController = new HikesDetailsController();
+        $hike = $HikesDetailsController->hikesDetails();
+
+
+        break;
     case "profile":
         $displayCurrentUserProfile = (new User()) -> find_user($_SESSION["user"]["nickname"]);
 
@@ -68,14 +75,7 @@ switch ($url_path)
     case "hikesUser" || "myHikes":
         (new HikesDetailsController())->display_user_hikes();
         break;
-    /*case "hikesUser":
-        (new PageController())->display_user_hikes();
-        break;*/
-    case "hikesdetails":
-        $HikesDetailsController = new HikesDetailsController();
-        $hike = $HikesDetailsController->hikesDetails();
-        echo $hike;
-        break;
+
     case "users/gestion":
 
         if($_SESSION['user']['admin'] == 1){
