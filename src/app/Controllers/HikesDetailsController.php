@@ -4,11 +4,7 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use App\Models\Database;
-<<<<<<< HEAD
-use PDO;
-=======
 use App\Models\User;
->>>>>>> 84dceb706d9dd5a70b0c479d47cb5f7658ade799
 
 class HikesDetailsController extends Database
 {
