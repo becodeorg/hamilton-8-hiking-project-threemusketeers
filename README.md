@@ -1,13 +1,13 @@
 # The Hiking Project.com
 
 ## About the Project
-The Hiking Project is a small web application created during training at becode.org. The project runs in a Docker container and was developed as a group effort. It serves as a social network centered around hiking. The design is primarily based on [picocss](https://picocss.com/) with a few minor additions.
+The Hiking Project is a small web application created during training at becode.org. The project runs in a Docker container and was developed as a group effort. It serves as a social network centered around hiking. The design is primarily based on [pico.css](https://picocss.com/) with a few minor additions.
 
 ## Features
-- Publish your hikes
-- View hikes from other users
-- Delete and edit your hikes
-- Filter hikes by tags
+- Publish your hikes.
+- View hikes from other users.
+- Delete and edit your hikes.
+- Filter hikes by tags.
 
 ## Used Technologies
 - Docker
