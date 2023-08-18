@@ -53,7 +53,7 @@ try {
         case "newHike":
             $newHike = new NewHike();
             if ($method === "GET") $newHike->showNewHikeForm();
-            if ($method === "POST") $newHike->addNewHike($_POST['name'], $_POST['distance'], $_POST['duration'],$_POST['elevation_gain'],$_POST['description'],$_SESSION["user"]["id"]);
+            if ($method === "POST") $newHike->addNewHike($_POST['name'], $_POST['distance'], $_POST['duration'],$_POST['elevation_gain'],$_POST['description'],$_SESSION["user"]["id"], date("Y-m-d") . " " . date("h:i:s"), date("Y-m-d") . " " . date("h:i:s"));
             break;
         case "hikesdetails":
             $HikesDetailsController = new HikesDetailsController();

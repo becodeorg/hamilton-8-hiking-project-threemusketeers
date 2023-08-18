@@ -18,20 +18,23 @@ class NewHike{
 
     }
 
-    public function addNewHike(string $nameInput, int $distanceInput, int $durationInput, int $elevation_gainInput, string $descriptionInput, $userId)
+    public function addNewHike($nameInput, $distanceInput, $durationInput, $elevation_gainInput, $descriptionInput, $userId, $created_at, $updated_at)
     {
         if (empty($nameInput) || empty($distanceInput) || empty($durationInput) || empty($elevation_gainInput) || empty($descriptionInput)) {
             throw new Exception('Form not completed.');
         }
 
         $name = htmlspecialchars($nameInput);
-        $distance = htmlspecialchars($nameInput);
-        $duration = htmlspecialchars($nameInput);
-        $elevation_gain = htmlspecialchars($nameInput);
+        $distance = filter_var($distanceInput, FILTER_SANITIZE_NUMBER_INT);
+        $duration = filter_var($durationInput, FILTER_SANITIZE_NUMBER_INT);
+        $elevation_gain = filter_var($elevation_gainInput, FILTER_SANITIZE_NUMBER_INT);
         $description = htmlspecialchars($descriptionInput);
         $userID = $userId;
+        $createdAt = $created_at;
+        $updatedAt = $updated_at;
 
-        $hike = (new Hikes())->createNewHike($name, $distance, $duration, $elevation_gain, $description, $userID);
+
+        $hike = (new Hikes())->createNewHike($name, $distance, $duration, $elevation_gain, $description, $userID, $createdAt, $updatedAt);
         
         http_response_code(302);
         header('location: /hikesUser');

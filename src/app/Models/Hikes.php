@@ -16,8 +16,8 @@ class Hikes extends Database
     return $hikes;
  }
 
- public function createNewHike($name, $distance, $duration, $elevation_gain, $description, $userId){
-   $query = "INSERT INTO Hikes (name, distance, duration, elevation_gain, description, user_id) VALUES (?, ?, ?, ?, ?, ?)";
-   $stmt = $this->query($query, [$name, $distance, $duration, $elevation_gain, $description, $userId]);
+ public function createNewHike($name, $distance, $duration, $elevation_gain, $description, $userId, $created_at, $updated_at){
+   $sql = "INSERT INTO Hikes (name, distance, duration, elevation_gain, description, user_id, created_at, updated_at) VALUES (?,?,?,?,?,?,?,?)";
+   $stmt = $this->query($sql, [$name, $distance, $duration, $elevation_gain, $description, $userId, $created_at, $updated_at]);
  }
 }
