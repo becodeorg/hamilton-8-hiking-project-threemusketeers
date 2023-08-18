@@ -1,3 +1,5 @@
+
+<a href="/hikes/dashboard/create">Creer un hike</a>
 <table>
     <tr>
         <th>Type of hike</th>
@@ -6,7 +8,12 @@
         <th>Elevation gain</th>
         <th>Manage hike</th>
     </tr>
-    <?php foreach($displayUserHikes as $hikeKey=>$keyValue): ?>
+    <?php
+
+    foreach($displayUserHikes as $hikeKey=>$keyValue):
+
+
+        ?>
         <tr>
         <?php foreach($keyValue as $key=>$keyValue): ?>
         <?php 

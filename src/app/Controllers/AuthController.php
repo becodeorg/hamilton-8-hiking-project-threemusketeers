@@ -7,6 +7,7 @@ namespace App\Controllers;
 use Exception;
 use App\Models\User;
 use App\Models\Database;
+use App\Models\Auth;
 
 
 class AuthController
@@ -72,6 +73,7 @@ class AuthController
             'lastName' => $user['lastName'],
             'nickname' => $user['nickname'],
             'email' => $user['email'],
+            'admin'=>$user['admin']
         ];
         
         // Redirect to home page
@@ -126,4 +128,21 @@ class AuthController
         http_response_code(302);
         header('location: /');
     }
+
+    public function verification($id)
+    {
+
+        $auth = new Auth();
+        $hikes_has_user = $auth->verification($id);
+
+        if ($hikes_has_user->user_id == $_SESSION['user']['id'])
+        {
+            return true;
+        }else{
+            return false;
+        }
+
+
+    }
 }
+

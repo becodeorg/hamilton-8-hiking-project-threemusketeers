@@ -37,6 +37,16 @@
     <!--ADD THE USER NAME / NEED PROFILE DATA-->
     <?php
       if($_SESSION["user"]){
+<<<<<<< HEAD
+        echo "<li>Hello, " . $_SESSION["user"]["nickname"] . "</li>";
+        echo "<li><a href='/logout'><i class='fa-solid fa-right-from-bracket'></i></a></li>";
+        echo "<li><a href='/profile' role='button'> <i class='fa-solid fa-user'></i>   My profile</a></li>";
+        if($_SESSION['user']['admin']==1)
+        {
+            echo "<li><a href='/users/gestion' role='button'>  gestion users</a></li>";
+            echo "<li><a href='/tags/gestion' role='button'>  gestion tags</a></li>";
+            echo "<li><a href='/hikes/dashboard/index' role='button'>  gestion hikes</a></li>";
+=======
         if($_SESSION["user"]["admin"] == 1){
           echo "<li>Hello, " . $_SESSION["user"]["nickname"] . "</li>";
           echo "<li><a href='/logout'><i class='fa-solid fa-right-from-bracket'></i></a></li>";
@@ -47,6 +57,7 @@
           echo "<li><a href='/profile' role='button'> <i class='fa-solid fa-user'></i>   My profile</a></li>";
           echo "<li><a href='/myHikes' role='button'>My hikes</li>";
           echo "<li><a href='/logout'><i class='fa-solid fa-right-from-bracket'></i></a></li>";
+>>>>>>> 84dceb706d9dd5a70b0c479d47cb5f7658ade799
         }
       }else{
         echo "<li><a href='/login'>Login</a></li>";
