@@ -35,4 +35,12 @@ class Hikes extends Database
   
  }
 
+ public function changeHikeInfo($id, $name, $distance, $duration, $elevation_gain, $description, $updated_at){
+
+  $sql = "UPDATE Hikes SET name = ?, distance = ?, duration = ?, elevation_gain = ?, description = ?, updated_at = ? WHERE id = ?";
+
+  $stmt = $this->query($sql, [$name, $distance, $duration, $elevation_gain, $description, $updated_at, $id]);
+
+ }
+
 }

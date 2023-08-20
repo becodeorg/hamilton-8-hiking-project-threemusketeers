@@ -40,4 +40,26 @@ class NewHike{
         header('location: /hikesUser');
     }
 
+    public function modifyHike($idHike, $nameInput, $distanceInput, $durationInput, $elevation_gainInput, $descriptionInput, $updated_at){
+
+        if (empty($nameInput) || empty($distanceInput) || empty($durationInput) || empty($elevation_gainInput) || empty($descriptionInput)) {
+            throw new Exception('Form not completed.');
+        }
+
+        $name = htmlspecialchars($nameInput);
+        $distance = filter_var($distanceInput, FILTER_SANITIZE_NUMBER_INT);
+        $duration = filter_var($durationInput, FILTER_SANITIZE_NUMBER_INT);
+        $elevation_gain = filter_var($elevation_gainInput, FILTER_SANITIZE_NUMBER_INT);
+        $description = htmlspecialchars($descriptionInput);
+        $updatedAt = $updated_at;
+        $id = $idHike;
+
+        (new Hikes)->changeHikeInfo($id, $name, $distance, $duration, $elevation_gain, $description, $updatedAt);
+
+        http_response_code(302);
+        header('location: /hikesUser');
+
+    }
+    
+    
 }
