@@ -134,8 +134,9 @@ class AuthController
         $nickname = htmlspecialchars($nicknameInput);
         $email = filter_var($emailInput, FILTER_SANITIZE_EMAIL);
         
-        $modUser = (new User())->change_user_info($_SESSION["user"]["nickname"], $firstName, $lastName, $nickname, $email);
-        $user = (new User())->find_user($nickname);
+        $modUser = (new User())->change_user_info($_SESSION["user"]["id"], $firstName, $lastName, $nickname, $email);
+
+        $user = (new User())->find_user_byId($_SESSION["user"]["id"]);
 
         $_SESSION['user'] = [
             'id' => $user['id'],

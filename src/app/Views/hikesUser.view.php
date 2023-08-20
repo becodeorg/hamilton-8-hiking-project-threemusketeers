@@ -37,7 +37,7 @@
     <?php endforeach; ?>
 </table>
 
-<a href='/newHike'><button>new hike</button></a>
+<a href='/newHike'><button>New hike</button></a>
 
 
 
