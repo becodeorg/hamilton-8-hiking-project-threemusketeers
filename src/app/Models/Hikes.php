@@ -43,4 +43,12 @@ class Hikes extends Database
 
  }
 
+ public function deleteHike(){
+
+  $id = (int)$_GET['id'];
+  $sql = "DELETE FROM Hikes WHERE id = ?";
+  $stmt = $this->query($sql, [$id]);
+
+ }
+
 }

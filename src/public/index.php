@@ -58,15 +58,15 @@ try {
         case "modifyHike":
             $modifyHike = new NewHike();
             $displayHike = new HikesDetailsController();
-            if ($method === "GET") $displayHike->modifyHikes();
+            if ($method === "GET") $displayHike->displayModifyHikeForm();
             if ($method === "POST") $modifyHike->modifyHike($_GET["id"], $_POST["name"], $_POST["distance"], $_POST["duration"], $_POST["elevation_gain"], $_POST["description"], date("Y-m-d") . " " . date("h:i:s"));
+            break;
+        case "deleteHike":
+            (new HikesDetailsController())->deleteHike();
             break;
         case "hikesdetails":
             $HikesDetailsController = new HikesDetailsController();
             $hike = $HikesDetailsController->hikesDetails();
-            break;
-        case "modifyHike":
-            $modifyHike = (new HikesDetailsController)->modifyHikes();
             break;
         default:
             $pageController = new PageController();

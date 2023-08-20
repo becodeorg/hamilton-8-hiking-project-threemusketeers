@@ -29,7 +29,7 @@
         ?>
         <?php endforeach; ?>
         <td> 
-            <a href="#" >Delete</a>   
+            <a href="/deleteHike?id=<?= $hike['id']?>" >Delete</a>   
             <br>
             <a href="/modifyHike?id=<?= $hike['id']?>" >Modify</a>
         </td>

@@ -42,7 +42,7 @@ class HikesDetailsController extends Database
         
     }
 
-    public function modifyHikes(){
+    public function displayModifyHikeForm(){
 
         $hikeModify = (new Hikes()) -> getHike();
         
@@ -50,6 +50,14 @@ class HikesDetailsController extends Database
         include 'app/Views/modifyHike.view.php';
         include 'app/Views/layout/footer.view.php';
         
+    }
+
+    public function deleteHike(){
+
+        $deleteHike = (new Hikes())->deleteHike();
+
+        http_response_code(302);
+        header('location: /hikesUser');
     }
 }
 
