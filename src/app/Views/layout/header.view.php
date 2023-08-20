@@ -38,9 +38,9 @@
       if($_SESSION["user"]){
         if($_SESSION["user"]["admin"] == 1){
           echo "<li>Hello, " . $_SESSION["user"]["nickname"] . "</li>";
+          echo "<li><a href='/profile' role='button'>My profile <i class='fa-solid fa-user'></i></a></li>";
+          echo "<li><a href='/#' role='button'>Admin</a></li>";
           echo "<li><a href='/logout'><i class='fa-solid fa-right-from-bracket'></i></a></li>";
-          echo "<li><a href='/profile' role='button'>My profile </a></li>";
-          echo "<li><a href='/#'>Admin</a></li>";
         }else{
           echo "<li>Hello, " . $_SESSION["user"]["nickname"] . "</li>";
           echo "<li><a href='/profile' role='button'>My profile <i class='fa-solid fa-user'></i></a></li>";

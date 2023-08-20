@@ -55,7 +55,6 @@ class AuthController
 
     public function sendRegistrationEmail($email, $firstName) {
 
-        /////////////////////////////////////////////////////////////// problem was the new PHPMailer(true) 
         $mail = new PHPMailer;
     
         try {
@@ -108,6 +107,7 @@ class AuthController
             'lastName' => $user['lastName'],
             'nickname' => $user['nickname'],
             'email' => $user['email'],
+            'admin' =>  $user['admin'],
         ];
         
         // Redirect to home page
