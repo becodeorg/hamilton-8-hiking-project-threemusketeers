@@ -4,9 +4,11 @@
         <th>Distance</th>
         <th>Duration</th>
         <th>Elevation gain</th>
+        <th>Created at</th>
+        <th>Updated at</th>
         <th>Manage hike</th>
     </tr>
-    <?php foreach($displayUserHikes as $hike): ?>
+    <?php foreach($displayAllHikes as $hike): ?>
         <tr>
         <?php foreach($hike as $key=>$keyValue): ?>
         <?php 
@@ -23,6 +25,12 @@
             case "elevation_gain":
                 echo "<td><i class='fa-solid fa-arrow-trend-up'></i> $keyValue m</td>";
                 break;
+            case "created_at":
+                echo "<td><i class='fa-solid fa-clock-rotate-left'></i> $keyValue m</td>";
+                break;
+            case "updated_at":
+                echo "<td><i class='fa-solid fa-clock-rotate-left'></i> $keyValue m</td>";
+                break;
             default:
                 break;
         }
@@ -36,12 +44,6 @@
         </tr>
     <?php endforeach; ?>
 </table>
-
-<a href='/newHike'><button>New hike</button></a>
-
-
-
-
 
 
 

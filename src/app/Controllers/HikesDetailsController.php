@@ -23,6 +23,16 @@ class HikesDetailsController extends Database
 
     }
 
+    public function displayAllHikes(){
+
+        $displayAllHikes = (new Hikes())->getAllHikes();
+
+        include 'app/Views/layout/header.view.php';
+        include "app/Views/allHikes.view.php";
+        include 'app/Views/layout/footer.view.php';
+
+    }
+
     public function display_user_hikes(){
 
         $displayUserHikes = (new User()) -> user_hikes($_SESSION["user"]["id"]);
@@ -56,8 +66,19 @@ class HikesDetailsController extends Database
 
         $deleteHike = (new Hikes())->deleteHike();
 
-        http_response_code(302);
-        header('location: /hikesUser');
+
+        if($_SESSION["user"]["admin"] == 1){
+
+            http_response_code(302);
+            header('location: /allHikes');
+
+        } else{
+
+            http_response_code(302);
+            header('location: /hikesUser');
+
+        }
+        
     }
 }
 

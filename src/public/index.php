@@ -9,7 +9,7 @@ use App\Controllers\PageController;
 use App\Models\User;
 use App\Controllers\IndexController;
 use App\Controllers\HikesDetailsController;
-use App\Controllers\NewHike;
+use App\Controllers\NewHikeController;
 
 try {
     $url_path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), "/");
@@ -22,9 +22,8 @@ try {
             $displayIndex->index();
             break;
         case "register":
-            $authController = new AuthController();
-            if ($method === "GET") $authController->showRegistrationForm();
-            if ($method === "POST") $authController->register($_POST['firstName'],$_POST['lastName'], $_POST['nickname'],$_POST['email'], $_POST['password']);
+            if ($method === "GET") (new AuthController())->showRegistrationForm();
+            if ($method === "POST") (new AuthController())->register($_POST['firstName'],$_POST['lastName'], $_POST['nickname'],$_POST['email'], $_POST['password']);
             break;
         case "login":
             $authController = new AuthController();
@@ -50,16 +49,17 @@ try {
         case "myHikes":
             (new HikesDetailsController())->display_user_hikes();
             break;
+        case "allHikes":
+            (new HikesDetailsController())->displayAllHikes();
+            break;
         case "newHike":
-            $newHike = new NewHike();
+            $newHike = new NewHikeController();
             if ($method === "GET") $newHike->showNewHikeForm();
             if ($method === "POST") $newHike->addNewHike($_POST['name'], $_POST['distance'], $_POST['duration'],$_POST['elevation_gain'],$_POST['description'],$_SESSION["user"]["id"], date("Y-m-d") . " " . date("h:i:s"), date("Y-m-d") . " " . date("h:i:s"));
             break;
         case "modifyHike":
-            $modifyHike = new NewHike();
-            $displayHike = new HikesDetailsController();
-            if ($method === "GET") $displayHike->displayModifyHikeForm();
-            if ($method === "POST") $modifyHike->modifyHike($_GET["id"], $_POST["name"], $_POST["distance"], $_POST["duration"], $_POST["elevation_gain"], $_POST["description"], date("Y-m-d") . " " . date("h:i:s"));
+            if ($method === "GET") (new HikesDetailsController())->displayModifyHikeForm();
+            if ($method === "POST") (new NewHikeController())->modifyHike($_GET["id"], $_POST["name"], $_POST["distance"], $_POST["duration"], $_POST["elevation_gain"], $_POST["description"], date("Y-m-d") . " " . date("h:i:s"));
             break;
         case "deleteHike":
             (new HikesDetailsController())->deleteHike();
