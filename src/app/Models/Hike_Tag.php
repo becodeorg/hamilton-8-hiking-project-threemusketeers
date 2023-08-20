@@ -12,8 +12,8 @@ class Hike_Tag extends Database
 
     public function deleteHike($hikeID)
     {
-        $sql = "DELETE FROM Hikes_has_tags WHERE hike = $hikeID";
-        $this->query($sql);
+        $sql = "DELETE FROM Hikes_has_tags WHERE hike = ?";
+        $this->query($sql,[$hikeID]);
     }
 
     public function store($array,$hikeID)

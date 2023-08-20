@@ -78,6 +78,12 @@ public function delete()
     // modifier le localhost
     header('Location:http://localhost:3000/hikes/dashboard/index');
 
+}
+
+public  function deleteByUserID($userID)
+{
+    $model = new Hike();
+    $model->deleteByUSserID($userID);
 
 }
 

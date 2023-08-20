@@ -49,6 +49,7 @@ class AuthController
 
 
     public function login(){
+
         $nicknameInput = $_POST['nickname'];
         $passwordInput = $_POST['password'];
         if (empty($nicknameInput) || empty($passwordInput)) {
@@ -68,7 +69,7 @@ class AuthController
             throw new Exception('Wrong password.');
         }
 
-        
+
         $_SESSION['user'] = [
             'id' => $user['id'],
             'firstName' => $user['firstName'],

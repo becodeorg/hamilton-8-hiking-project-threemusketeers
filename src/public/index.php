@@ -35,16 +35,35 @@ switch ($url_path) {
         $displayIndex = new PageController();
         $displayIndex->index();
         break;
+    case "hikes/dashboard/delete":
+        $hikesController = new HikesController();
+        $hikesController->delete();
+        $hikeTagController = new HikestagsController();
+        $hikeTagController->deleteHike($_GET['id']);
+
+        break;
     case "register":
         $authController = new AuthController();
         if ($method === "GET") $authController->showRegistrationForm();
         if ($method === "POST") $authController->register($_POST['firstName'], $_POST['lastName'], $_POST['nickname'], $_POST['email'], $_POST['password']);
         break;
-    case "login":
-
+    case "auth/login":
         $authController = new AuthController();
         if ($method === "GET") $authController->showLoginForm();
         if ($method === "POST") $authController->login($_POST['nickname'], $_POST['password']);
+        break;
+
+    case "tags/dashboard/create":
+
+        if ($method == "GET") {
+            $tagsConroller = new TagsController();
+            $tagsConroller->create();
+        }
+        if ($method == 'POST') {
+            $tagsController = new TagsController();
+            $tagsController->store();
+        }
+
         break;
     case "hikes/dashboard/update":
 
@@ -77,6 +96,12 @@ switch ($url_path) {
             $usersController = new usersController();
             $usersController->index();
         }
+        break;
+    case 'users/gestion/deleteAll':
+        $usersController = new usersController();
+        $usersController->delete($_GET['id']);
+        $hikesController =  new HikesController();
+        $hikesController->deleteByUserID($_GET['id']);
         break;
     case "users/gestion/update":
 
@@ -201,17 +226,6 @@ switch ($url_path) {
         break;
 
 
-    case "tags/dashboard/create":
-        if ($method == "GET") {
-            $tagsConroller = new TagsController();
-            $tagsConroller->create();
-        }
-        if ($method == 'POST') {
-            $tagsController = new TagsController();
-            $tagsController->store();
-        }
-
-        break;
     default:
         $pageController = new PageController();
         $pageController->page_404();

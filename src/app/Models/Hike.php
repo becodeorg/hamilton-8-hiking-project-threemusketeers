@@ -80,6 +80,11 @@ FROM Hikes ";
 
     }
 
+    public function deleteByUSserID($userID)
+    {
+        $this->query('DELETE FROM Hikes WHERE user_id=?',[$userID]);
+    }
+
     public function getByID($id)
     {
         $stmt = $this->query("SELECT * FROM Hikes WHERE id = ? ",[$id]);
