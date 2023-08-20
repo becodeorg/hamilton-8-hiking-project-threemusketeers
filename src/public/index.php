@@ -58,7 +58,10 @@ try {
         case "hikesdetails":
             $HikesDetailsController = new HikesDetailsController();
             $hike = $HikesDetailsController->hikesDetails();
-        break;
+            break;
+        case "modifyHike":
+            $modifyHike = (new HikesDetailsController)->modifyHikes();
+            break;
         default:
             $pageController = new PageController();
             $pageController->page_404();

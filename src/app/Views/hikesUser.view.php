@@ -6,9 +6,9 @@
         <th>Elevation gain</th>
         <th>Manage hike</th>
     </tr>
-    <?php foreach($displayUserHikes as $hikeKey=>$keyValue): ?>
+    <?php foreach($displayUserHikes as $hike): ?>
         <tr>
-        <?php foreach($keyValue as $key=>$keyValue): ?>
+        <?php foreach($hike as $key=>$keyValue): ?>
         <?php 
         switch($key){
             case "name":
@@ -29,15 +29,17 @@
         ?>
         <?php endforeach; ?>
         <td> 
-            <a href="#">Delete</a>   
+            <a href="#" >Delete</a>   
             <br>
-            <a href="#">Modify</a>
+            <a href="/modifyHike?id=<?= $hike['id']?>" >Modify</a>
         </td>
         </tr>
     <?php endforeach; ?>
 </table>
 
 <a href='/newHike'><button>new hike</button></a>
+
+
 
 
 
