@@ -45,6 +45,7 @@ WHERE id=".(int)$userID;
         $sql = "INSERT INTO Users (firstName, lastName, nickname, email, password) VALUES (?,?,?,?,?)";
 
         $this->query($sql, [$firstName, $lastName, $nickname, $email, $password]);
+        return $this->lastInsertId() ;
 
     }
 
@@ -54,13 +55,15 @@ WHERE id=".(int)$userID;
         return $stmt->fetch();
     }
 
-    public function store_session(string $firstName, string $lastName, string $nickname, $email){
+    public function store_session(string $firstName, string $lastName, string $nickname, $email,$lastID){
+
         $_SESSION['user'] = [
-            'id' => $this->lastInsertId(),
+            'id' => $lastID,
             'firstName' => $firstName,
             'lastName' => $lastName,
             'nickname' => $nickname,
             'email' => $email,
+            'admin'=>0
         ];
     }
 

@@ -1,4 +1,5 @@
-    <h2><?= $hike['name'] ?></h2>
+
+<h2><?= $hike['name'] ?></h2>
 
     <!--TAG TO MODIFY ? -->
     <div class="grid" id="grid-solopage">
@@ -6,7 +7,7 @@
         <?php
 
         $hikesTagsController = new \App\Controllers\HikestagsController();
-        $tags =$hikesTagsController->find($hike['id']);
+        $tags =$hikesTagsController->find($hike['HikesID']);
         foreach ($tags as $tag)
         {
             ?>
@@ -24,6 +25,27 @@
         <li> <i class="fa-solid fa-clock-rotate-left"></i> Last update : <?= $hike['updated_at'] ?> </li>
     </ul>
     <p>Description: <?= $hike['description'] ?></p>
+    <?php
+
+        if(!is_null($_SESSION['user']))
+        {
+            if (is_null($hike['hike']))
+            {
+                ?>
+                <a href="favorite?hikeID=<?=$hike['HikesID']?>">Mettre en favoris</a>
+                <?php
+            }else{
+
+                ?>
+                <a href="/favorite/delete?hikeID=<?=$hike['HikesID']?>">retirer des  favoris</a>
+                <?php
+            }
+            ?>
+
+    <?php
+        }
+    ?>
+
 
     
 

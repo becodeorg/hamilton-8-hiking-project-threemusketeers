@@ -39,10 +39,11 @@ class AuthController
         $email = filter_var($emailInput, FILTER_SANITIZE_EMAIL);
         $passwordHash = password_hash($passwordInput, PASSWORD_DEFAULT);
 
-        $user = (new User())->register_new_user($firstName, $lastName, $nickname, $email, $passwordHash);
-        
-        $session = (new User())->store_session($firstName, $lastName, $nickname, $email);
-        
+
+        $lastID= (new User())->register_new_user($firstName, $lastName, $nickname, $email, $passwordHash);
+
+        $session = (new User())->store_session($firstName, $lastName, $nickname, $email,$lastID);
+
         http_response_code(302);
         header('location: /hikesUser');
     }
