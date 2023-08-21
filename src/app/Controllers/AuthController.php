@@ -90,7 +90,7 @@ class AuthController
         
         $user = (new User())->find_user($username);
 
-        // To fix 
+        // To fix as its not displaying any error
         
         if (empty($user)) {
             throw new Exception('There\'s no user in our DataBase with that nickname.');
