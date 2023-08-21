@@ -109,10 +109,20 @@ class AuthController
             'email' => $user['email'],
             'admin' =>  $user['admin'],
         ];
+
+        if($_SESSION["user"]["admin"] == 1){
+
+            http_response_code(302);
+            header('location: /');
+
+        }else{
+
+            http_response_code(302);
+            header('location: /hikesUser');
+
+        }
         
-        // Redirect to home page
-        http_response_code(302);
-        header('location: /hikesUser');
+       
     }
 
 
