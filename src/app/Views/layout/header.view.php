@@ -44,9 +44,9 @@
 
         if($_SESSION['user']['admin']==1)
         {
-            echo "<li><a href='/users/gestion' role='button'>  gestion users</a></li>";
-            echo "<li><a href='/tags/gestion' role='button'>  gestion tags</a></li>";
-            echo "<li><a href='/hikes/dashboard/index' role='button'>  gestion hikes</a></li>";
+            echo "<li><a href='/users/gestion' role='button'> User gestion</a></li>";
+            echo "<li><a href='/tags/gestion' role='button'>  Tags gestion</a></li>";
+            echo "<li><a href='/hikes/dashboard/index' role='button'>  Hikes gestion</a></li>";
 
         }else{
           echo "<li><a href='/myHikes' role='button'>My hikes</li>";
