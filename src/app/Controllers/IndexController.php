@@ -17,6 +17,8 @@ class IndexController
             include 'app/Views/layout/header.view.php';
             include 'app/Views/index.view.php';
             include 'app/Views/layout/footer.view.php';
+
+            echo $_SESSION["user"]["id"];
         } catch (Exception $e) {
             print_r($e->getMessage());
         }

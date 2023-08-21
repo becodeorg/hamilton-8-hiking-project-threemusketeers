@@ -64,10 +64,10 @@ class User extends Database
 
     }
 
-    public function store_session(string $firstName, string $lastName, string $nickname, $email,$lastID){
+    public function store_session(string $firstName, string $lastName, string $nickname, $email){
 
         $_SESSION['user'] = [
-            'id' => $lastID,
+            'id' => $this->lastInsertId(),
             'firstName' => $firstName,
             'lastName' => $lastName,
             'nickname' => $nickname,
