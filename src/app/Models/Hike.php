@@ -48,11 +48,7 @@ WHERE id=".(int)$hikeID;
 
         if ($_SESSION['user']['admin'] == 0)
         {
-            /*$sql ="SELECT *,Hikes.id as hikeID,Hikes.name as hikeName, Tags.name as tagName
-FROM Hikes 
-    INNER JOIN Tags ON Tags.id = Hikes.tag_id INNER JOIN Hikes_has_users ON Hikes.id = Hikes_has_users.hike 
-    INNER JOIN Users on Hikes_has_users.user = Users.id 
-WHERE Users.id =".(int)$_SESSION['user']['id'];*/
+          
 
             $sql = "SELECT *,Hikes.id as hikeID,Hikes.name as hikeName
 FROM Hikes 

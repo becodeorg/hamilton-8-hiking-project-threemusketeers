@@ -25,6 +25,9 @@
     </ul>
     <p>Description: <?= $hike['description'] ?></p>
 
+    <?php 
+    
+
     
 
     

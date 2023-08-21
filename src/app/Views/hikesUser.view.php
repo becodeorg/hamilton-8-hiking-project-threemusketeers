@@ -8,27 +8,22 @@
         <th>Elevation gain</th>
         <th>Manage hike</th>
     </tr>
-    <?php
-
-    foreach($displayUserHikes as $hikeKey=>$keyValue):
-
-
-        ?>
+    <?php foreach($displayUserHikes as $hike): ?>
         <tr>
-        <?php foreach($keyValue as $key=>$keyValue): ?>
+        <?php foreach($hike as $key=>$keyValue): ?>
         <?php 
         switch($key){
             case "name":
                 echo "<td>$keyValue</td>";
                 break;
             case "distance":
-                echo "<td>$keyValue km</td>";
+                echo "<td><i class='fa-solid fa-person-hiking'></i> $keyValue m</td>";
                 break;
             case "duration":
-                echo "<td>$keyValue minutes</td>";
+                echo "<td><i class='fa-solid fa-clock'></i> $keyValue min</td>";
                 break;
             case "elevation_gain":
-                echo "<td>$keyValue meters</td>";
+                echo "<td><i class='fa-solid fa-arrow-trend-up'></i> $keyValue m</td>";
                 break;
             default:
                 break;
@@ -36,11 +31,20 @@
         ?>
         <?php endforeach; ?>
         <td> 
-            <a href="#">Delete</a>   
+            <a href="/deleteHike?id=<?= $hike['id']?>" >Delete</a>   
             <br>
-            <a href="#">Modify</a>
+            <a href="/modifyHike?id=<?= $hike['id']?>" >Modify</a>
         </td>
         </tr>
     <?php endforeach; ?>
 </table>
+
+<a href='/newHike'><button>New hike</button></a>
+
+
+
+
+
+
+
 

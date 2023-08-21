@@ -3,11 +3,15 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
+require_once 'vendor/autoload.php';
 
 use Exception;
 use App\Models\User;
 use App\Models\Database;
 use App\Models\Auth;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception as PHPMailerException;
 
 
 class AuthController
@@ -32,7 +36,6 @@ class AuthController
         if (empty($firstNameInput) || empty($lastNameInput) || empty($nicknameInput) || empty($emailInput) || empty($passwordInput)) {
             throw new Exception('Form not completed.');
         }
-
         $firstName = htmlspecialchars($firstNameInput);
         $lastName = htmlspecialchars($lastNameInput);
         $nickname = htmlspecialchars($nicknameInput);
@@ -40,27 +43,55 @@ class AuthController
         $passwordHash = password_hash($passwordInput, PASSWORD_DEFAULT);
 
         $user = (new User())->register_new_user($firstName, $lastName, $nickname, $email, $passwordHash);
-        
+     
+         // Send registration email
+        $this->sendRegistrationEmail($email, $firstName);
+
         $session = (new User())->store_session($firstName, $lastName, $nickname, $email);
-        
+            
         http_response_code(302);
         header('location: /hikesUser');
     }
 
+    public function sendRegistrationEmail($email, $firstName) {
 
-    public function login(){
+        $mail = new PHPMailer;
+    
+        try {
+            // SMTP settings
+            $mail->SMTPDebug = 3;
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'hikingappbecode@gmail.com';
+            $mail->Password = 'ouorpsrfzlsktuph';
+            $mail->SMTPSecure = "tls"; 
+            $mail->Port = 587; 
+    
+            // Email content
+            $mail->setFrom('hikingappbecode@gmail.com', 'Hiking app team');
+            $mail->addAddress($email, $firstName);
+            $mail->isHTML(true);
+            $mail->Subject = 'Welcome to Our Hiking app!';
+            $mail->Body = "<b>Hello, you have successfully created an account in our Hiking app.</b>";
+    
+            $mail->send();
+        } catch (PHPMailerException $e) {
+            return $mail->ErrorInfo;
+        }
+    }
 
-        $nicknameInput = $_POST['nickname'];
-        $passwordInput = $_POST['password'];
+    public function login(string $nicknameInput, string $passwordInput){
         if (empty($nicknameInput) || empty($passwordInput)) {
             throw new Exception('Form not completed.');
         }
 
         $username = htmlspecialchars($nicknameInput);
+        
+        $user = (new User())->find_user($username);
 
-        $user = (new User())->find_user($nicknameInput);
-
-
+        // To fix 
+        
         if (empty($user)) {
             throw new Exception('There\'s no user in our DataBase with that nickname.');
         }
@@ -69,14 +100,14 @@ class AuthController
             throw new Exception('Wrong password.');
         }
 
-
+        
         $_SESSION['user'] = [
             'id' => $user['id'],
             'firstName' => $user['firstName'],
             'lastName' => $user['lastName'],
             'nickname' => $user['nickname'],
             'email' => $user['email'],
-            'admin'=>$user['admin']
+            'admin' =>  $user['admin'],
         ];
         
         // Redirect to home page
@@ -103,8 +134,9 @@ class AuthController
         $nickname = htmlspecialchars($nicknameInput);
         $email = filter_var($emailInput, FILTER_SANITIZE_EMAIL);
         
-        $modUser = (new User())->change_user_info($_SESSION["user"]["nickname"], $firstName, $lastName, $nickname, $email);
-        $user = (new User())->find_user($nickname);
+        $modUser = (new User())->change_user_info($_SESSION["user"]["id"], $firstName, $lastName, $nickname, $email);
+
+        $user = (new User())->find_user_byId($_SESSION["user"]["id"]);
 
         $_SESSION['user'] = [
             'id' => $user['id'],

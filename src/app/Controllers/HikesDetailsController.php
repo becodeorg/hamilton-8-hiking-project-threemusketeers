@@ -4,6 +4,8 @@ namespace App\Controllers;
 use PDO;
 use App\Models\Database;
 use App\Models\User;
+use App\Models\Hikes;
+
 
 class HikesDetailsController extends Database
 {
@@ -14,8 +16,19 @@ class HikesDetailsController extends Database
         $query = "SELECT * FROM Hikes WHERE id = ?";
         $stmt = $this->query($query, [$id]);
         $hike = $stmt->fetch(PDO::FETCH_ASSOC);
+        
         include 'app/Views/layout/header.view.php';
         include 'app/Views/hikesdetails.view.php';
+        include 'app/Views/layout/footer.view.php';
+
+    }
+
+    public function displayAllHikes(){
+
+        $displayAllHikes = (new Hikes())->getAllHikes();
+
+        include 'app/Views/layout/header.view.php';
+        include "app/Views/allHikes.view.php";
         include 'app/Views/layout/footer.view.php';
 
     }
@@ -32,12 +45,32 @@ class HikesDetailsController extends Database
 
     public function display_hikes_details(){
 
-        $hike = (new HikesDetailsController()) -> hikesDetails();
+        $hike = (new Hikes()) -> getHike();
         include 'app/Views/layout/header.view.php';
         include 'app/Views/hikesdetails.view.php';
         include 'app/Views/layout/footer.view.php';
         
     }
+
+    public function displayModifyHikeForm(){
+
+        $hikeModify = (new Hikes()) -> getHike();
+        
+        include 'app/Views/layout/header.view.php';
+        include 'app/Views/modifyHike.view.php';
+        include 'app/Views/layout/footer.view.php';
+        
+    }
+
+    public function deleteHike(){
+
+        $deleteHike = (new Hikes())->deleteHike();
+
+            http_response_code(302);
+            header('location: /hikesUser');
+        
+    }
 }
+
 
 

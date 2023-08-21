@@ -12,5 +12,6 @@ class ProfileController{
         include 'app/Views/layout/header.view.php';
         include "app/Views/profile.view.php";
         include 'app/Views/layout/footer.view.php';
+        
     }
 }

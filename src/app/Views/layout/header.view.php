@@ -34,7 +34,6 @@
     <li><strong>The Hiking Project.com</strong></li>
   </ul>
   <ul>
-    <!--ADD THE USER NAME / NEED PROFILE DATA-->
     <?php
       if($_SESSION["user"]){
 

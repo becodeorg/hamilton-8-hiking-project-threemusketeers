@@ -1,4 +1,4 @@
-<form action="/auth/login" method="post">
+<form action="#" method="POST">
     <div>
         <label for="nickname">Nickname</label>
         <input type="text" id="nickname" name="nickname"/>
@@ -7,5 +7,5 @@
         <label for="password">Password</label>
         <input type="password" id="password" name="password"/>
     </div>
-    <button type="submit">Login !</button>
+    <button type="submit">Login</button>
 </form>
