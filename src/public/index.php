@@ -77,7 +77,7 @@ try{
                     $hikesController = new HikesController();
                     $hikesController->store();
                     $hikeTagController = new HikestagsController();
-                    $hikeTagController->update($_POST['tags'], $_POST['hikeID']);
+                    $hikeTagController->update($_POST['tags'], $_POST['hikeID'],1);
                 }
             }
 
@@ -170,11 +170,25 @@ try{
             case "newHike":
                 $newHike = new NewHikeController();
                 if ($method === "GET") $newHike->showNewHikeForm();
-                if ($method === "POST") $newHike->addNewHike($_POST['name'], $_POST['distance'], $_POST['duration'],$_POST['elevation_gain'],$_POST['description'],$_SESSION["user"]["id"], date("Y-m-d") . " " . date("h:i:s"), date("Y-m-d") . " " . date("h:i:s"));
+                if ($method === "POST")
+                {
+                    $lastID=$newHike->addNewHike($_POST['name'], $_POST['distance'], $_POST['duration'],$_POST['elevation_gain'],$_POST['description'],$_SESSION["user"]["id"], date("Y-m-d") . " " . date("h:i:s"), date("Y-m-d") . " " . date("h:i:s"));
+                    $hikeTagController = new HikestagsController();
+                    ;
+                    $hikeTagController->store($lastID,2);
+
+                }
                 break;
         case "modifyHike":
             if ($method === "GET") (new HikesDetailsController())->displayModifyHikeForm();
-            if ($method === "POST") (new NewHikeController())->modifyHike($_GET["id"], $_POST["name"], $_POST["distance"], $_POST["duration"], $_POST["elevation_gain"], $_POST["description"], date("Y-m-d") . " " . date("h:i:s"));
+            if ($method === "POST")
+            {
+                $newHikeController = new NewHikeController();
+                $newHikeController->modifyHike($_GET["id"], $_POST["name"], $_POST["distance"], $_POST["duration"], $_POST["elevation_gain"], $_POST["description"], date("Y-m-d") . " " . date("h:i:s"));
+                $hikeTagController = new HikestagsController();
+                $hikeTagController->update($_POST['tags'],$_POST['hikeID'],2);
+            }
+
             break;
         case "deleteHike":
             (new HikesDetailsController())->deleteHike();
@@ -195,7 +209,7 @@ try{
                 $hikesController = new HikesController();
                 $lastID = $hikesController->store();
                 $hikeTagController = new HikestagsController();
-                $hikeTagController->store($lastID);
+                $hikeTagController->store($lastID,1);
 
             }
 
@@ -221,7 +235,7 @@ try{
                     $hikesController = new HikesController();
                     $hikesController->store();
                     $hikeTagController = new HikestagsController();
-                    $hikeTagController->update($_POST['tags'], $_POST['hikeID']);
+                    $hikeTagController->update($_POST['tags'], $_POST['hikeID'],1);
                 }
             }
 

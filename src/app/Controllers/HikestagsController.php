@@ -19,14 +19,29 @@ class HikestagsController
         $hike_tag->deleteHike($hikeID);
     }
 
-    public function store($lastID)
+    public function store($lastID,$redirect)
     {
 
         $hike_tag = new Hike_Tag();
         $hike_tag->store($_POST['tags'],$lastID);
-        header('Location:http://localhost:3000/hikes/dashboard/index');
+
+        if ($redirect == 1)
+        {
+            header('Location:/hikes/dashboard/index');
+        }else {
+            http_response_code(302);
+            header('location: /hikesUser');
+        }
+
+
     }
 
+
+    public function create($hikeID)
+    {
+        $hike_tag = new Hike_Tag();
+        $hike_tag->store($_POST['tags'],$hikeID);
+    }
     public function find($hikeID)
     {
         $hikeTag = new Hike_Tag();
@@ -36,12 +51,18 @@ class HikestagsController
     }
 
 
-    public function update($array,$hikeID)
+    public function update($array,$hikeID,$redirect)
     {
+
         $hikeHasTags = new Hike_Tag();
         $hikeHasTags->update($array,$hikeID);
-        header('Location:/hikes/dashboard/index');
-
+        if ($redirect == 1)
+        {
+            header('Location:/hikes/dashboard/index');
+        }else {
+            http_response_code(302);
+            header('location: /hikesUser');
+        }
     }
 
     public function isChecked($tagID,$hikeID)

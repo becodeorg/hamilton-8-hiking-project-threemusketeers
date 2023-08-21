@@ -34,6 +34,7 @@ class Hikes extends Database
 
     $sql = "INSERT INTO Hikes (name, distance, duration, elevation_gain, description, user_id, created_at, updated_at) VALUES (?,?,?,?,?,?,?,?)";
     $stmt = $this->query($sql, [$name, $distance, $duration, $elevation_gain, $description, $userId, $created_at, $updated_at]);
+    return $this->lastInsertId();
 
   }
   public function getHike(){

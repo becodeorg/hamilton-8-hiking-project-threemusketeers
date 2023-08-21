@@ -33,11 +33,9 @@ class NewHikeController{
         $createdAt = $created_at;
         $updatedAt = $updated_at;
 
-
         $hike = (new Hikes())->createNewHike($name, $distance, $duration, $elevation_gain, $description, $userID, $createdAt, $updatedAt);
-        
-        http_response_code(302);
-        header('location: /hikesUser');
+
+        return $hike;
     }
 
     public function modifyHike($idHike, $nameInput, $distanceInput, $durationInput, $elevation_gainInput, $descriptionInput, $updated_at){
@@ -56,8 +54,7 @@ class NewHikeController{
 
         (new Hikes)->changeHikeInfo($id, $name, $distance, $duration, $elevation_gain, $description, $updatedAt);
 
-            http_response_code(302);
-            header('location: /hikesUser');
+
 
     } 
     

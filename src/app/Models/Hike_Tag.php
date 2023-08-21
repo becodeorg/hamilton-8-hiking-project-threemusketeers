@@ -18,6 +18,7 @@ class Hike_Tag extends Database
 
     public function store($array,$hikeID)
     {
+
         foreach ($array as $value)
         {
             $sql ="INSERT INTO Hikes_has_tags

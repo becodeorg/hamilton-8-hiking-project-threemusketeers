@@ -1,3 +1,11 @@
+<?php
+
+$controller = new App\Controllers\TagsController();
+$datas =$controller->select();
+
+$hikeTagsController = new App\Controllers\HikestagsController();
+
+?>
 <form action="#" method="POST">
     <div>
         <label for="name">Name</label>
@@ -19,6 +27,32 @@
         <label for="description">Description</label>
         <input type="text" id="description" name="description"value="<?=$hikeModify["description"]?>">
     </div>
+    <input type="hidden" name="hikeID" value=<?=$hikeModify['id']?>>
+    <p> Add tags</p>
+    <?php
+    foreach ($datas as $data)
+
+    {
+
+        if ( $hikeTagsController->isChecked($data->id,$hikeModify['id'])!= null)
+        {
+            ?>
+
+            <label><input type="checkbox" name="tags[]"  value="<?=$data->id?>"  checked> <?=$data->name?></label><br />
+
+            <?php
+        }else{
+
+            ?>
+
+            <label><input type="checkbox" name="tags[]"  value="<?=$data->id?>" > <?=$data->name?></label><br />
+
+
+            <?php
+        }
+
+    }
+    ?>
     <button type="submit">Modify Hike</button>
 </form>
 

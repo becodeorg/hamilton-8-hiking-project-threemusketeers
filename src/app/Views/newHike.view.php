@@ -1,3 +1,7 @@
+<?php
+$controller = new App\Controllers\TagsController();
+$datas =$controller->select();
+?>
 <form action="" method="post">
     <div>
         <label for="name">Name</label>
@@ -19,5 +23,16 @@
         <label for="description">Description</label>
         <input type="text" id="description" name="description"/>
     </div>
+    <p> Add tags</p>
+    <?php
+    foreach ($datas as $data)
+    {
+        ?>
+
+        <label><input type="checkbox" name="tags[]"  value="<?=$data->id?>" > <?=$data->name?></label><br />
+
+        <?php
+    }
+    ?>
     <button type="submit">Create</button>
 </form>
