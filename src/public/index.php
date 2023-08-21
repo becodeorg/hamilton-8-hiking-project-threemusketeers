@@ -14,6 +14,7 @@ use App\Controllers\HikestagsController;
 use App\Controllers\TagsController;
 use App\Controllers\HikesController;
 use App\Controllers\NewHikeController;
+use App\Controllers\FavoritesController;
 
 
 $url_path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), "/");
@@ -222,7 +223,25 @@ switch ($url_path) {
             }
         }
 
+
         break;
+
+    case "favorite/delete":
+
+        $favorites = new FavoritesController();
+        $favorites->delete();
+        break;
+    case "favorite":
+
+        $favorites = new FavoritesController();
+        $favorites->add();
+        break;
+    case "favorite/index":
+
+        $favorites = new  FavoritesController();
+        $favorites->index();
+        break;
+
     default:
         $pageController = new PageController();
         $pageController->page_404();

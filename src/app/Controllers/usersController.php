@@ -46,8 +46,7 @@ class usersController
 
     public function delete($id)
     {
-        // faut-il supprimer les hikes cooressponant aux user
-        // faire un input pour dire oui ou non
+
         $user = new User();
         $user->delete($id);
         header('location:/users/gestion');

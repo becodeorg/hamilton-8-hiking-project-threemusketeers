@@ -13,7 +13,8 @@ class HikesDetailsController extends Database
     {
        
         $id = (int)$_GET['id'];
-        $query = "SELECT * FROM Hikes WHERE id = ?";
+        $query = "SELECT *, Hikes.id as HikesID From Hikes  LEFT JOIN Favorites ON Favorites.hike = Hikes.id
+    WHERE Hikes.id = ?";
         $stmt = $this->query($query, [$id]);
         $hike = $stmt->fetch(PDO::FETCH_ASSOC);
         

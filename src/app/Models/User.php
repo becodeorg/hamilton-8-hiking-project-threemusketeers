@@ -43,6 +43,7 @@ class User extends Database
         $sql = "INSERT INTO Users (firstName, lastName, nickname, email, password) VALUES (?,?,?,?,?)";
 
         $this->query($sql, [$firstName, $lastName, $nickname, $email, $password]);
+        return $this->lastInsertId() ;
 
     }
 
@@ -62,18 +63,19 @@ class User extends Database
         return $stmt->fetch();
 
     }
-    
-   public function store_session(string $firstName, string $lastName, string $nickname, $email){
 
-    $_SESSION['user'] = [
-        'id' => $this->lastInsertId(),
-        'firstName' => $firstName,
-        'lastName' => $lastName,
-        'nickname' => $nickname,
-        'email' => $email,
-    ];
+    public function store_session(string $firstName, string $lastName, string $nickname, $email,$lastID){
 
-   }
+        $_SESSION['user'] = [
+            'id' => $lastID,
+            'firstName' => $firstName,
+            'lastName' => $lastName,
+            'nickname' => $nickname,
+            'email' => $email,
+            'admin'=>0
+        ];
+    }
+
 
    public function change_user_info($idUser, string $firstName, string $lastName, string $nickname, string $email){
 
