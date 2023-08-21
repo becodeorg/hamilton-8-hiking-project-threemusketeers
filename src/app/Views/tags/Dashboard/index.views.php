@@ -1,5 +1,5 @@
 
-<a href="/tags/dashboard/create">Creer un nouveau tag</a>
+<a href="/tags/dashboard/create" role="button">Ceate a new tag</a>
 <table>
     <thead>
     <tr>
@@ -14,7 +14,7 @@
         ?>
         <tr>
             <td><?=$tag->name?></td>
-            <td><a href="/tags/update?id=<?=$tag->id?>"> Modifier</a>-  <a href="/tags/delete?id=<?=$tag->id?>"> supprimer</a></td>
+            <td><a href="/tags/update?id=<?=$tag->id?>"> <i class="fa-solid fa-pen-to-square"></i></a>-  <a href="/tags/delete?id=<?=$tag->id?>"> <i class="fa-solid fa-trash"></i></a></td>
         </tr>
         <?php
     }
