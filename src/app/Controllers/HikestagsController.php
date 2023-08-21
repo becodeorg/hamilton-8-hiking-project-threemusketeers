@@ -32,7 +32,6 @@ class HikestagsController
         $hikeTag = new Hike_Tag();
         $datas =$hikeTag->find($hikeID);
         return $datas;
-
     }
 
 

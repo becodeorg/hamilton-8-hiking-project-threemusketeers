@@ -24,6 +24,7 @@ switch ($url_path) {
 
         $displayIndex = new indexController();
         $displayIndex->index();
+
         break;
     case "hikes/dashboard/delete":
         $hikesController = new HikesController();
