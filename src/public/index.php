@@ -2,7 +2,6 @@
 session_start();
 
 require_once 'vendor/autoload.php';
-
 use App\Controllers\AuthController;
 use App\Controllers\PageController;
 use App\Controllers\IndexController;
@@ -13,7 +12,6 @@ use App\Controllers\HikestagsController;
 use App\Controllers\usersController;
 use App\Controllers\NewHike;
 use App\Models\User;
-
 
 try{
     $url_path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), "/");
