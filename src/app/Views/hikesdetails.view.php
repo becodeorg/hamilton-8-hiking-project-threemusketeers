@@ -32,12 +32,12 @@
             if (is_null($hike['hike']))
             {
                 ?>
-                <a href="favorite?hikeID=<?=$hike['HikesID']?>">Mettre en favoris</a>
+                <a href="favorite?hikeID=<?=$hike['HikesID']?>"><i class="fa-solid fa-star"></i> Add to favorite </a>
                 <?php
             }else{
 
                 ?>
-                <a href="/favorite/delete?hikeID=<?=$hike['HikesID']?>">retirer des  favoris</a>
+                <a href="/favorite/delete?hikeID=<?=$hike['HikesID']?>"> <i class="fa-solid fa-trash"></i>Remove from favorite</a>
                 <?php
             }
             ?>

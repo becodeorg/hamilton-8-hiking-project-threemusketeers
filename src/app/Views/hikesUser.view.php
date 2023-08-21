@@ -1,5 +1,4 @@
 
-<a href="/hikes/dashboard/create">Creer un hike</a>
 <table>
     <tr>
         <th>Type of hike</th>
@@ -31,9 +30,9 @@
         ?>
         <?php endforeach; ?>
         <td> 
-            <a href="/deleteHike?id=<?= $hike['id']?>" >Delete</a>   
+            <a href="/deleteHike?id=<?= $hike['id']?>" ><i class="fa-solid fa-trash"></i></a>   
             <br>
-            <a href="/modifyHike?id=<?= $hike['id']?>" >Modify</a>
+            <a href="/modifyHike?id=<?= $hike['id']?>" ><i class="fa-solid fa-pen-to-square"></i></a>
         </td>
         </tr>
     <?php endforeach; ?>

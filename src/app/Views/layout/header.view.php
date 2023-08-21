@@ -39,7 +39,9 @@
 
         echo "<li>Hello, " . $_SESSION["user"]["nickname"] . "</li>";
         echo "<li><a href='/profile' role='button'> <i class='fa-solid fa-user'></i>   My profile</a></li>";
-          echo "<li><a href='/favorite/index' role='button'>mes favoris</li>";
+        echo '<li><a href="/favorite/index" role="button"> <i class="fa-solid fa-star"></i> My favourites</a></li>';
+
+
         if($_SESSION['user']['admin']==1)
         {
             echo "<li><a href='/users/gestion' role='button'>  gestion users</a></li>";

@@ -1,8 +1,8 @@
 <table>
     <thead>
     <tr>
-        <th>nom du hike</th>
-        <th>actions</th>
+        <th>Name</th>
+        <th>Remove from favourites</th>
     </tr>
     </thead>
     <tbody>
@@ -16,7 +16,7 @@
         ?>
         <tr>
             <td><?=$favorite->name?></td>
-            <td><a href="/favorite/delete?hikeID=<?=$favorite->id?>">supprimer des favoris</a> </td>
+            <td><a href="/favorite/delete?hikeID=<?=$favorite->id?>"><i class="fa-solid fa-trash"></i></a> </td>
         </tr>
 
         <?php
