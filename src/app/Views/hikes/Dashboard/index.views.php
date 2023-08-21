@@ -1,4 +1,4 @@
-<a href="/newHike" role="button">New hike</a>
+<a href="/newHike" role="button">Create a new hike</a>
 
 <table>
     <thead>
@@ -39,7 +39,7 @@
 
                     ?>
                 </td>
-                <td><a href="/hikes/dashboard/show?name=<?=$hike->hikeName?>">Open</a><span> - </span><a href="/hikes/dashboard/update?id=<?=$hike->hikeID?>"> Modify</a><span> - </span><a href="/hikes/dashboard/delete?id=<?=$hike->hikeID?>">Delete</a></td>
+                <td><a href="/hikes/dashboard/show?name=<?=$hike->hikeName?>"><i class="fa-solid fa-eye"></i></a>-<a href="/hikes/dashboard/update?id=<?=$hike->hikeID?>"> <i class="fa-solid fa-pen-to-square"></i></a>-  <a href="/hikes/dashboard/delete?id=<?=$hike->hikeID?>"> <i class="fa-solid fa-trash"></i></a></td>
             </tr>
 
 
