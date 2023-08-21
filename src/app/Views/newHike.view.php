@@ -4,7 +4,7 @@
         <input type="text" id="name" name="name"/>
     </div>
     <div>
-        <label for="distance">Distance(meters)</label>
+        <label for="distance">Distance(kilometers)</label>
         <input type="number" id="distance" name="distance"/>
     </div>
     <div>

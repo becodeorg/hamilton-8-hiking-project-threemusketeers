@@ -1,9 +1,9 @@
 <table>
 <thead>
 <tr>
-    <th>firstName</th>
-    <th>lastName</th>
-    <th>email</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Mail</th>
     <th>Actions</th>
 </tr>
 </thead>
@@ -16,9 +16,9 @@ foreach ($users as $user){
         <td><?=$user->firstName?></td>
         <td><?=$user->lastName?></td>
         <td><?=$user->email?></td>
-        <td><a href="/users/gestion/update?id=<?=$user->id?>"> Modifier</a>-
-            <a href=/users/gestion/delete?id=<?=$user->id?>> supprimer</a> -
-            <a href=/users/gestion/deleteAll?id=<?=$user->id?>> supprimer user et Hikes</a>
+        <td><a href="/users/gestion/update?id=<?=$user->id?>"> Modify</a>-
+            <a href=/users/gestion/delete?id=<?=$user->id?>> <i class="fa-solid fa-trash"></i></a> -
+            <a href=/users/gestion/deleteAll?id=<?=$user->id?>> <i class="fa-solid fa-trash"></i>User and Hikes</a>
         </td>
     </tr>
 

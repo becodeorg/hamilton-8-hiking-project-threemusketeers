@@ -46,5 +46,5 @@ $hikeTagsController = new App\Controllers\HikestagsController();
 
 
     <input type="hidden" name="hikeID" value="<?=$hike->id?>">
-    <input type="submit" value="modifier">
+    <input type="submit" value="Modify">
 </form>
