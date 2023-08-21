@@ -49,9 +49,6 @@ try {
         case "myHikes":
             (new HikesDetailsController())->display_user_hikes();
             break;
-        case "allHikes":
-            (new HikesDetailsController())->displayAllHikes();
-            break;
         case "newHike":
             $newHike = new NewHikeController();
             if ($method === "GET") $newHike->showNewHikeForm();

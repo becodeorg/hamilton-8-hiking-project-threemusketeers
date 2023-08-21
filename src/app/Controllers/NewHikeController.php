@@ -56,18 +56,8 @@ class NewHikeController{
 
         (new Hikes)->changeHikeInfo($id, $name, $distance, $duration, $elevation_gain, $description, $updatedAt);
 
-
-        if($_SESSION["user"]["admin"] == 1){
-
-            http_response_code(302);
-            header('location: /allHikes');
-
-        }else{
-
             http_response_code(302);
             header('location: /hikesUser');
-
-        }
 
     } 
     

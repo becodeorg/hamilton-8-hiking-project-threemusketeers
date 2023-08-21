@@ -66,18 +66,8 @@ class HikesDetailsController extends Database
 
         $deleteHike = (new Hikes())->deleteHike();
 
-
-        if($_SESSION["user"]["admin"] == 1){
-
-            http_response_code(302);
-            header('location: /allHikes');
-
-        } else{
-
             http_response_code(302);
             header('location: /hikesUser');
-
-        }
         
     }
 }
