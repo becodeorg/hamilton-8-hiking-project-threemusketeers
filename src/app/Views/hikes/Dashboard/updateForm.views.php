@@ -22,7 +22,6 @@ $hikeTagsController = new App\Controllers\HikestagsController();
     foreach ($datas as $data)
 
     {
-       // $hikeTagsController->isChecked($data->id,$hike->id));
 
         if ( $hikeTagsController->isChecked($data->id,$hike->id)!= null)
         {

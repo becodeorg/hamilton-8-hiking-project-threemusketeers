@@ -1,5 +1,5 @@
-<a href="#">Creer</a>
-<a href="#">Creer un nouveau tag</a>
+<a href="/newHike" role="button">New hike</a>
+
 <table>
     <thead>
     <tr>
@@ -39,7 +39,7 @@
 
                     ?>
                 </td>
-                <td><a href="/hikes/dashboard/show?name=<?=$hike->hikeName?>">voir</a>-<a href="/hikes/dashboard/update?id=<?=$hike->hikeID?>"> Modifier</a>-  <a href="/hikes/dashboard/delete?id=<?=$hike->hikeID?>"> supprimer</a></td>
+                <td><a href="/hikes/dashboard/show?name=<?=$hike->hikeName?>">Open</a><span> - </span><a href="/hikes/dashboard/update?id=<?=$hike->hikeID?>"> Modify</a><span> - </span><a href="/hikes/dashboard/delete?id=<?=$hike->hikeID?>">Delete</a></td>
             </tr>
 
 
