@@ -89,12 +89,12 @@ class AuthController
         $username = htmlspecialchars($nicknameInput);
         
         $user = (new User())->find_user($username);
-
-        // To fix 
         
         if (empty($user)) {
             throw new Exception('There\'s no user in our DataBase with that nickname.');
         }
+
+        
 
         if (password_verify($passwordInput, $user['password']) === false) {
             throw new Exception('Wrong password.');
