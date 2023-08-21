@@ -11,7 +11,7 @@ class FavoritesController
         $model = new Favoris();
         $model->add($hikeID);
 
-        header("Location:localhost:3000/hikesdetails?id=$_GET[hikeID]");
+        header("/hikesdetails?id=$_GET[hikeID]");
 
     }
 
