@@ -188,7 +188,6 @@ try{
                 $hikeTagController = new HikestagsController();
                 $hikeTagController->update($_POST['tags'],$_POST['hikeID'],2);
             }
-
             break;
         case "deleteHike":
             (new HikesDetailsController())->deleteHike();
@@ -199,20 +198,15 @@ try{
             break;
         case "hikes/dashboard/create":
             if ($method == "GET") {
-
                 $hikesController = new HikesController();
-
                 $hikesController->create();
-
             }
             if ($method == 'POST') {
                 $hikesController = new HikesController();
                 $lastID = $hikesController->store();
                 $hikeTagController = new HikestagsController();
                 $hikeTagController->store($lastID,1);
-
             }
-
             break;
 
         case "hikes/dashboard/update":
@@ -238,8 +232,6 @@ try{
                     $hikeTagController->update($_POST['tags'], $_POST['hikeID'],1);
                 }
             }
-
-
             break;
 
         case "favorite/delete":
